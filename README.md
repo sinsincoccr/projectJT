@@ -23,7 +23,6 @@
 
 ### 3. ERD
 ![image](https://github.com/sinsincoccr/projectJT/assets/145324925/596b1846-34c3-4557-8769-7a41eeb7b49d)
-<img src="\F:\hkcode\project_1\화면구성\ERD.PNG"  width="700" height="370">
 
 ### 4. 프로젝트 문제점
 - 스마트에디터 출력에 html코드가 같이 딸려 나옴
