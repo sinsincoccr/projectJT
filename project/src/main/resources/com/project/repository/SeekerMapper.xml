@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.repository.SeekerMapper">
+
+    <!--  각 태마 별 쇼 조회  -->
+    <select id="findEditerSeeker" resultType="SeekerVO">
+        select * from job_seeker where seeker_category = 'editerSeeker' ORDER BY seeker_no ASC
+    </select>
+
+    <select id="findThumbnailerSeeker" resultType="SeekerVO">
+        select * from job_seeker where seeker_category = 'thumbnailerSeeker' ORDER BY seeker_no ASC
+    </select>
+
+    <select id="findSdCharacterSeeker" resultType="SeekerVO">
+        select * from job_seeker where seeker_category = 'sdCharacterSeeker' ORDER BY seeker_no ASC
+    </select>
+
+    <select id="findVirtualSeeker" resultType="SeekerVO">
+        select * from job_seeker where seeker_category = 'virtualSeeker' ORDER BY seeker_no ASC
+    </select>
+
+    <select id="findCamaraManSeeker" resultType="SeekerVO">
+        select * from job_seeker where seeker_category = 'camaraManSeeker' ORDER BY seeker_no ASC
+    </select>
+
+    <!--  구인글 한개 조회  -->
+    <select id="getSeeker" resultType="SeekerVO">
+        select * from job_seeker where seeker_no=#{seeker_no}
+    </select>
+
+    <!--  구인글 한개 삽입  -->
+    <insert id="addSeekerForm">
+        insert into job_seeker (seeker_no, seeker_category, seeker_title, seeker_career, seeker_tools, seeker_type, seeker_case, seeker_min, seeker_portofolio, regDate, user_no, user_name)
+        values (job_seeker_seq.nextval, #{seeker_category}, #{seeker_title}, #{seeker_career}, #{seeker_tools}, #{seeker_type}, #{seeker_case}, #{seeker_min}, #{seeker_portofolio}, sysdate, #{user_no}, #{user_name})
+    </insert>
+
+
+
+
+
+
+</mapper>

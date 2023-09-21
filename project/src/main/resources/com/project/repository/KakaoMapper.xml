@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.repository.KakaoMapper">
+
+    <!--  구인글 한개 삽입  -->
+    <insert id="addKakaopayForm">
+        insert into store_order (order_no, user_no, product_no, regDate)
+        values (store_order_seq.nextval, #{user_no}, #{product_no}, sysdate)
+    </insert>
+
+
+
+
+
+
+
+</mapper>

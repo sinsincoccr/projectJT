@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <th:block th:insert="~{assist/header :: head_header}" />
+</head>
+<body>
+<th:block th:insert="~{assist/header :: contents}"/>
+<br/><br/>
+<div class="container">
+    <div class="container-fluid">
+    <form th:action="@{/writeOffer}" th:object="${offer}" method="post" enctype="multipart/form-data" style="text-align: right;">
+        <!-- form fields here -->
+        <input type="button" th:if="${session.loginMember != null}" value="글작성" th:onclick="|location.href='@{/add}'|" style="padding: 5px 10px; background: #2ba0db; color: #fff; font-size: 13px; text-decoration: none; text-transform: uppercase; border: none; cursor: pointer;">
+    </form>
+    <br/>
+    <!-- Begin Page Content -->
+
+    <div class="row">
+        <div class="col-2">
+            <div style="border: 1px solid #ccc; padding: 10px;">
+                <a>커뮤니티</a><br/>
+                <a href="/board/freeBoard">자유게시판</a><br/>
+                <a href="/board/feedbackBoard">피드백</a><br/>
+                <a href="/board/revenueBoard">수익공개</a><br/>
+                <a href="/board/taxBoard">세금Q&A</a>
+            </div>
+        </div>
+
+        <div class="col">
+
+
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">피드백</h6>
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" width="100%" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Title</th>
+                            <th>Writer</th>
+                            <th>Date</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="board : ${board}">
+                            <td>
+                                <a th:href="@{/boardInfo(comm_no=${board.comm_no})}"  th:text="${board.comm_no}">글번호</a>
+                            </td>
+                            <td>
+                                <a th:href="@{/boardInfo(comm_no=${board.comm_no})}"  th:text="${board.comm_title}">글제목</a>
+                            </td>
+                            <td th:text="${board.user_no}">작성자</td>
+                            <td th:text="${#temporals.format(board.regDate, 'yyyy-MM-dd HH:mm')}">작성일</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 col-md-7">
+                <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
+                    <ul class="pagination float-right">
+                        <li th:if="${pageDTO.prev}" class="paginate_button page-item previous" id="dataTable_previous">
+                            <a th:href="@{/board/feedbackBoard(pageNum=${pageDTO.startPage - 1},searchType=${pageDTO.pager.searchType},keyword=${pageDTO.pager.keyword})}" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
+                        </li>
+                        <li th:each="page, pageStat : ${pageDTO.getPageNumList()}" class="paginate_button page-item" th:classappend="${pageDTO.pager.pageNum == page} ? 'active'">
+                            <a th:href="@{/board/feedbackBoard(pageNum=${page},searchType=${pageDTO.pager.searchType},keyword=${pageDTO.pager.keyword})}" th:text="${page}" aria-controls="dataTable" th:data-dt-idx="${pageStat.count}" tabindex="0" class="page-link"></a>
+                        </li>
+                        <li th:if="${pageDTO.next}" class="paginate_button page-item next" id="dataTable_next">
+                            <a th:href="@{/board/feedbackBoard(pageNum=${pageDTO.endPage + 1},searchType=${pageDTO.pager.searchType},keyword=${pageDTO.pager.keyword})}" aria-controls="dataTable" th:data-dt-idx="${pageDTO.endPage}" tabindex="0" class="page-link">Next</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+</body>
+</html>

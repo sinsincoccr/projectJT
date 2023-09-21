@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Title</title>
+    <style>
+
+         /* 링크의 밑줄 제거 및 호버 시 텍스트 색상 변경 */
+        a {
+            text-decoration: none;
+            color: #000; /* 링크 텍스트 색상을 원하는 색상으로 변경하세요. */
+        }
+
+        /* 마우스 호버 시 텍스트 색상 변경 */
+        a:hover {
+            text-decoration: none; /* 호버 시에도 밑줄이 표시되지 않도록 제거 */
+        }
+    </style>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+    <th:block th:insert="~{assist/header :: head_header}" />
+</head>
+<body>
+<th:block th:insert="~{assist/header :: contents}"/>
+
+<br/><br/>
+</form>
+<div class="container">
+    <form th:action="@{/writeOffer}" th:object="${offer}" method="post" enctype="multipart/form-data" style="text-align: right;">
+        <!-- form fields here -->
+        <input type="button" th:if="${session.loginMember != null}" value="글작성" th:onclick="|location.href='@{/writeOffer}'|" style="padding: 5px 10px; background: #2ba0db; color: #fff; font-size: 13px; text-decoration: none; text-transform: uppercase; border: none; cursor: pointer;">
+    </form>
+</div>
+
+
+<h4 style="text-align: center; color: #2ba0db;"> 구인 <span style="color: black;">리스트</span> </h4>
+
+
+    <div th:each="offer : ${offer}">
+        <a th:href="@{/offerInfo(offer_no=${offer.offer_no})}" style="text-decoration: none;">
+            <div style="border: 1px solid #ccc; padding: 10px; display: flex; align-items: center;">
+                <div style="flex: 1;">
+                    <h4 class="text-uppercase m-0" th:text="${offer.offer_company}" style="font-size: 25px; " >회사 이름</h4>
+                </div>
+                <div style="flex: 2;">
+                    <span th:text="${offer.offer_title}" style="font-size: 20px; font-family: 'Arial', sans-serif;">글 제목</span><br/>
+                    <span th:text="${'경력' + offer.offer_career}" style="font-size: 15px; font-family: 'Arial', sans-serif; margin-right: 10px;">경력</span>
+                    <span th:text="${'급여' + offer.offer_salary + '만원'}" style="font-size: 15px; font-family: 'Arial', sans-serif; margin-right: 10px;">급여</span>
+                    <span th:text="${'사용툴' + offer.offer_tools}" style="font-size: 15px; font-family: 'Arial', sans-serif;">글 사용툴</span>
+                </div>
+            </div>
+        </a>
+    </div>
+
+
+
+
+</body>
+</html>

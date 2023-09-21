@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.repository.OfferMapper">
+
+    <!--  각 태마 별 쇼 조회  -->
+    <select id="findEditer" resultType="OfferVO">
+        select * from job_offer where offer_category = 'editer' ORDER BY offer_no ASC
+    </select>
+
+    <select id="findThumbnailer" resultType="OfferVO">
+        select * from job_offer where offer_category = 'thumbnailer' ORDER BY offer_no ASC
+    </select>
+
+    <select id="findSdCharacter" resultType="OfferVO">
+        select * from job_offer where offer_category = 'sdCharacter' ORDER BY offer_no ASC
+    </select>
+
+    <select id="findVirtual" resultType="OfferVO">
+        select * from job_offer where offer_category = 'virtual' ORDER BY offer_no ASC
+    </select>
+
+    <select id="findCamaraMan" resultType="OfferVO">
+        select * from job_offer where offer_category = 'camaraMan' ORDER BY offer_no ASC
+    </select>
+
+    <!--  구인글 한개 조회  -->
+    <select id="getOffer" resultType="OfferVO">
+        select * from job_offer where offer_no=#{offer_no}
+    </select>
+
+    <!--  구인글 한개 삽입  -->
+    <insert id="addOfferForm">
+        insert into job_offer (offer_no, offer_category, offer_company, offer_title, offer_career, offer_tools, offer_type, offer_salary, offer_content, regDate, user_no)
+        values (job_offer_seq.nextval, #{offer_category}, #{offer_company}, #{offer_title}, #{offer_career}, #{offer_tools}, #{offer_type}, #{offer_salary}, #{offer_content}, sysdate, #{user_no})
+    </insert>
+
+
+
+
+
+
+</mapper>

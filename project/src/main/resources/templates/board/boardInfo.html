@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <th:block th:insert="~{assist/header :: head_header}" />
+</head>
+<body>
+<th:block th:insert="~{assist/header :: contents}"/>
+<br/><br/><br/>
+
+<div class="container">
+    <div class="container-fluid">
+    <div class="row">
+        <div class="mb-3">
+            <div style="border: 1px solid #ccc; padding: 10px;">
+                <a>커뮤니티</a><br/>
+                <a href="/board/freeBoard">자유게시판</a><br/>
+                <a href="/board/feedbackBoard">피드백</a><br/>
+                <a href="/board/revenueBoard">수익공개</a><br/>
+                <a href="/board/taxBoard">세금Q&A</a>
+            </div>
+        </div>
+
+        <div class="col">
+            <span th:text="${board.comm_title}" style="font-size: 30px;"></span><br/>
+            <span th:text="${board.user_no}" style="font-size: 24px;"></span>
+            <span th:text="${board.regDate}" style="float: right;"></span>
+        </div>
+
+        <div class="container" style="border: 1px solid #ccc; height: 200px; background-color: #f0f8ff;" >
+                <span th:text="${board.comm_content}"></span>
+            </div>
+
+    </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>

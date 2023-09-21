@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.repository.BoardMapper">
+
+
+    <insert id="add">
+        insert into comm_board (comm_no ,comm_category, comm_title, comm_content, user_no, regDate)
+        values (comm_board_seq.nextval, #{comm_category}, #{comm_title}, #{comm_content}, #{user_no}, sysdate)
+    </insert>
+
+
+
+    <sql id="search">
+        <trim prefix="where" prefixOverrides="or">
+            <foreach item="searchType" collection="searchTypeArr">
+                <trim prefix="or">
+                    <choose>
+                        <when test="searchType == 't'.toString()">
+                            title like '%' || #{keyword} || '%'
+                        </when>
+                        <when test="searchType == 'c'.toString()">
+                            content like '%' || #{keyword} || '%'
+                        </when>
+                        <when test="searchType == 'w'.toString()">
+                            writer like '%' || #{keyword} || '%'
+                        </when>
+                    </choose>
+                </trim>
+            </foreach>
+        </trim>
+
+    </sql>
+
+
+
+
+    <select id="getFreeBoardListWithPaging" resultType="BoardVO">
+        <![CDATA[
+    select r, B.* from
+        (select rownum r, A.* from
+            (select * from comm_board
+            where comm_category = 'freeBoard'
+    ]]>
+
+        <include refid="search"></include>
+
+        <![CDATA[
+            ) A
+            where rownum <= (#{pageNum} * #{boardSize})
+        ) B
+    where r > (#{pageNum} - 1) * #{boardSize}
+    ]]>
+    </select>
+
+
+    <select id="getFeedbackBoardListWithPaging" resultType="BoardVO">
+        <![CDATA[
+    select r, B.* from
+        (select rownum r, A.* from
+            (select * from comm_board
+            where comm_category = 'feedbackBoard'
+            ]]>
+
+        <include refid="search"></include>
+
+        <![CDATA[
+            ) A
+            where rownum <= (#{pageNum} * #{boardSize})
+        ) B
+    where r > (#{pageNum} - 1) * #{boardSize}
+    ]]>
+    </select>
+
+    <select id="getRevenueBoardListWithPaging" resultType="BoardVO">
+        <![CDATA[
+    select r, B.* from
+        (select rownum r, A.* from
+            (select * from comm_board
+            where comm_category = 'revenueBoard'
+            ]]>
+
+        <include refid="search"></include>
+
+        <![CDATA[
+            ) A
+            where rownum <= (#{pageNum} * #{boardSize})
+        ) B
+    where r > (#{pageNum} - 1) * #{boardSize}
+    ]]>
+    </select>
+
+    <select id="getTaxBoardListWithPaging" resultType="BoardVO">
+        <![CDATA[
+    select r, B.* from
+        (select rownum r, A.* from
+            (select * from comm_board
+            where comm_category = 'taxBoard'
+            ]]>
+
+        <include refid="search"></include>
+
+        <![CDATA[
+            ) A
+            where rownum <= (#{pageNum} * #{boardSize})
+        ) B
+    where r > (#{pageNum} - 1) * #{boardSize}
+    ]]>
+    </select>
+
+    <select id="getFreeBoard" resultType="long">
+        select count(*) from comm_board where comm_category = 'freeBoard' ORDER BY comm_no ASC
+        <include refid="search"></include>
+    </select>
+
+    <select id="getFeedbackBoard" resultType="long">
+        select count(*) from comm_board where comm_category = 'feedbackBoard' ORDER BY comm_no ASC
+        <include refid="search"></include>
+    </select>
+
+    <select id="getRevenueBoard" resultType="long">
+        select count(*) from comm_board where comm_category = 'revenueBoard' ORDER BY comm_no ASC
+        <include refid="search"></include>
+    </select>
+
+    <select id="getTaxBoard" resultType="long">
+        select count(*) from comm_board where comm_category = 'taxBoard' ORDER BY comm_no ASC
+        <include refid="search"></include>
+    </select>
+
+    <select id="getBoard" resultType="BoardVO">
+        select * from comm_board where comm_no=#{comm_no}
+    </select>
+
+
+
+
+
+
+
+</mapper>

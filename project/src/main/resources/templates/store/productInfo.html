@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <th:block th:insert="~{assist/header :: head_header}" />
+</head>
+<body>
+<th:block th:insert="~{assist/header :: contents}"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <br/><br/><br/>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <img th:src="@{|/upload/${product.product_img}|}" width="200px" height="100px"  />
+            </div>
+            <div class="col-4">
+                <br/><br/>
+                <span th:text="${product.product_title}" style="font-size: 15px; font-family: 'Arial', sans-serif;">타이틀</span><br/>
+                <span th:text="${product.product_price + '원'}" style="font-size: 15px; font-family: 'Arial', sans-serif;">가격</span><br/>
+                <span th:text="${'상업적 이용 가능'}" style="font-size: 15px; font-family: 'Arial', sans-serif; text-align: right;"></span><br/>
+                <span th:text="${'재판매 불가능'}" style="font-size: 15px; font-family: 'Arial', sans-serif; text-align: right;"></span>
+            </div>
+        </div>
+
+
+
+        <div class="container" style="border: 1px solid #ccc; height: 200px; background-color: #f0f8ff;">
+            <span th:text=" ${product.product_content}"></span>
+        </div>
+    </div>
+
+    <br/>
+    <div class="container">
+        <input type="button" id="apibtn" value="결제"  style="padding: 5px 10px; background: #2ba0db; color: #fff; font-size: 15px; text-decoration: none; text-transform: uppercase; border: none; cursor: pointer;">
+
+
+    </div>
+    <script>
+    $(function() {
+        $('#apibtn').click(function() {
+            $.ajax({
+                type: 'POST', // POST 요청 설정
+                url: '/kakaopayReady',
+                dataType: 'json',
+                success: function(data) {
+                    window.open(data.next_redirect_pc_url, "_blank", "width=500, height=500"); // 팝업창 열기
+                },
+                error: function(error) {
+                    alert('로그인 후 구입 가능합니다.'); // 에러 객체를 문자열로 표시
+                }
+            });
+        });
+    });
+    </script>
+
+
+
+    </script>
+
+    </script>
+</body>
+</html>

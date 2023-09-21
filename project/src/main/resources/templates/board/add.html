@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+    <!-- jQuery 로드 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- SmartEditor2 텍스트편집기 -->
+    <script src="/libs/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+
+    <th:block th:insert="~{assist/header :: head_header}" />
+</head>
+<body>
+<th:block th:insert="~{assist/header :: contents}"/>
+
+<h1>스토어 글작성</h1>
+
+<form id="commForm" th:object="${board}" method="post" >
+    <div class="container">
+        <div class="mb-3">
+            <label for="categorySelect" class="form-label">카테고리</label>
+            <select th:field="*{comm_category}" class="form-select" id="categorySelect">
+                <option value="freeBoard">자유게시판</option>
+                <option value="feedbackBoard">피드백</option>
+                <option value="revenueBoard">수익공개</option>
+                <option value="taxBoard">세금게시판</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="titleInput" class="form-label">제목</label>
+            <input th:field="*{comm_title}" class="form-control" id="titleInput" >
+        </div>
+
+
+        <!-- 스마트 에디터 플레이스홀더 -->
+        <div id="smarteditor">
+            <textarea id="comm_content" name="comm_content" rows="10" cols="100" style="width: 100%;"></textarea>
+        </div>
+        <input type="submit" value="저장" th:onclick= "submitPost()">
+        <input type="button" value="취소" th:onclick="|location.href='@{/mainPage}'|">
+    </div>
+    <br/><br/><br/><br/>
+</form>
+<script>
+        let oEditors = []
+
+        smartEditor = function(){
+            console.log("네이버 스마트 에디터")
+                nhn.husky.EZCreator.createInIFrame({
+                    oAppRef: oEditors,
+                    elPlaceHolder: "comm_content",
+                    sSkinURI: "/libs/smarteditor/SmartEditor2Skin.html",
+                    fCreator: "createSEditor2"
+                })
+        }
+        $(document).ready(function(){
+            smartEditor()
+        })
+        </script>
+<script>
+        submitPost = function(){
+            oEditors.getById["comm_content"].exec("UPDATE_CONTENTS_FIELD", []);
+            let content = oEditors.getById["comm_content"].getText();  // Get plain text content
+
+            if(content == ""){
+                alert("내용을 입력해주세요")
+                oEditors.getById["comm_content"].exec(FOCUS)
+                return
+            }else{
+                console.log(content)
+                comm_content = content
+                console.log(comm_content)
+            }
+        }
+
+
+         </script>
+
+
+
+</body>
+</html>

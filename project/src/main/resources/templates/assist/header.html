@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+  <title>dropdown</title>
+  <th:block th:fragment="head_header">
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
+  <style>
+        @import url(https://fonts.googleapis.com/css?family=Roboto:400,700,500);
+
+        /* main Styles */
+
+        html { box-sizing: border-box; }
+
+        *, *:before, *:after { box-sizing: inherit; }
+
+        body {
+          background: #fafafa;
+          font-family: "Roboto", sans-serif;
+          font-size: 14px;
+          margin: 0;
+        }
+
+        a { text-decoration: none; }
+
+
+
+        h1 { text-align:center; margin-top:150px;}
+
+        /* Navigation Styles */
+
+        nav { background: #2ba0db; }
+
+        nav ul {
+          font-size: 0;
+          margin: 0;
+          padding: 0;
+          text-align: right; /* 오른쪽 정렬 스타일 추가 */
+        }
+
+        nav ul li {
+          display: inline-block;
+          position: relative;
+          text-align: left; /* 각 항목 내용을 왼쪽 정렬로 유지 */
+        }
+
+        nav ul li a {
+          color: #fff;
+          display: block;
+          font-size: 14px;
+          padding: 15px 14px;
+          transition: 0.3s linear;
+          position: relative;
+        }
+
+        nav ul li a .fa {
+          float: right; /* 아이콘을 오른쪽에 배치 */
+          margin-left: 6px;
+        }
+
+        nav ul li:hover { background: #126d9b; }
+
+        nav ul li ul {
+          border-bottom: 5px solid #2ba0db;
+          display: none;
+          position: absolute;
+          width: 150px;
+        }
+
+        nav ul li ul li {
+          border-top: 1px solid #444;
+          display: block;
+          width: 150px;
+        }
+
+        nav ul li ul li:first-child { border-top: none; }
+
+        nav ul li ul li a {
+          background: #373737;
+          display: block;
+          padding: 10px 14px;
+        }
+
+        nav ul li ul li a:hover { background: #126d9b; }
+
+        nav .fa.fa-angle-down { margin-left: 6px; }
+
+        nav {
+        background: #2ba0db;
+        position: relative; /* 요소를 상대적으로 위치시킴 */
+        z-index: 999; /* 다른 요소들보다 앞에 표시되도록 설정 */
+        }
+
+
+    </style>
+  </th:block>
+</head>
+<body>
+  <th:block th:fragment="contents">
+    <nav>
+      <div class="container" >
+        <ul>
+          <li><a href="/mainPage" style="font-family: cursive;">JobTube</a></li>
+
+          <li> <a href="#">모집<i class='fa fa-angle-down' style='float: right;'></i></a>
+            <ul>
+              <li><a href="/jobOffer/editer">영상에디터</a></li>
+              <li><a href="/jobOffer/thumbnailer">썸네일러</a></li>
+              <li><a href="/jobOffer/sdCharacter">SD캐릭터</a></li>
+              <li><a href="/jobOffer/virtual">버츄얼</a></li>
+              <li><a href="/jobOffer/camaraMan">촬영팀</a></li>
+            </ul>
+          </li>
+          <li> <a href="#">구직<i class='fa fa-angle-down' style='float: right;'></i></a>
+            <ul>
+              <li><a href="/jobSeeker/editerSeeker">영상에디터</a></li>
+              <li><a href="/jobSeeker/thumbnailerSeeker">썸네일러</a></li>
+              <li><a href="/jobSeeker/sdCharacterSeeker">SD캐릭터</a></li>
+              <li><a href="/jobSeeker/virtualSeeker">버츄얼</a></li>
+              <li><a href="/jobSeeker/camaraManSeeker">촬영팀</a></li>
+            </ul>
+          </li>
+          <li class='sub-menu'> <a href="#">커뮤니티<i class='fa fa-angle-down' style='float: right;'></i></a>
+            <ul>
+              <li><a href="/board/freeBoard">자유게시판</a></li>
+              <li><a href="/board/feedbackBoard">피드백</a></li>
+              <li><a href="/board/revenueBoard">수익공개</a></li>
+              <li><a href="/board/taxBoard">세금Q&A</a></li>
+            </ul>
+          </li>
+          <li class='sub-menu'> <a href="#">스토어<i class='fa fa-angle-down' style='float: right;'></i></a>
+            <ul>
+              <li><a href="/store/premierProStore">프리미어프로</a></li>
+              <li><a href="/store/finalCutStore">파이널컷</a></li>
+              <li><a href="/store/imageStore">그림/배경</a></li>
+              <li><a href="/store/powerBannerStore">파워배너</a></li>
+            </ul>
+          </li>
+
+          <li>
+            <a th:if="${session.loginMember == null}" th:href="@{/}">로그인</a>
+            <a th:if="${session.loginMember != null}" th:href="@{/logout}">로그아웃</a>
+          </li>
+
+
+
+
+
+
+
+        </ul>
+
+        </div>
+    </nav>
+
+    <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script>
+    $('nav li').hover(
+      function() {
+          $('ul', this).stop().slideDown(200);
+      },
+        function() {
+        $('ul', this).stop().slideUp(200);
+      }
+    );
+    </script>
+
+  </th:block>
+</body>
+</html>

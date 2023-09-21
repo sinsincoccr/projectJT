@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
+
+    <title>main</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+    <!-- owl carousel -->
+    <link rel="stylesheet" href="../fruitkha/fruitkha/assets/css/owl.carousel.css">
+    <!-- magnific popup -->
+    <link rel="stylesheet" href="../fruitkha/fruitkha/assets/css/magnific-popup.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="../fruitkha/fruitkha/assets/css/animate.css">
+    <!-- mean menu css -->
+    <link rel="stylesheet" href="../fruitkha/fruitkha/assets/css/meanmenu.min.css">
+    <!-- main style -->
+    <link rel="stylesheet" href="../fruitkha/fruitkha/assets/css/main.css">
+    <!-- responsive -->
+    <link rel="stylesheet" href="../fruitkha/fruitkha/assets/css/responsive.css">
+    <!-- google font -->
+    <th:block th:insert="~{assist/header :: head_header}" />
+</head>
+<body>
+<th:block th:insert="~{assist/header :: contents}"/>
+<br /> <br />
+
+
+<h4 style="text-align: center; color: #2ba0db;"> 추천 <span style="color: black;">모집배너</span> </h4>
+
+
+
+<section class="contact-section bg-black">
+    <div class="container">
+        <div class="row gx-4 gx-lg-5">
+            <div class="col-md-4 mb-3 mb-md-0" th:each="offer : ${offer.subList(1, 2)}">
+                <a th:href="@{/offerInfo(offer_no=${offer.offer_no})}">
+                    <div class="card py-4 h-100">
+                        <div class="card-body text-center">
+                            <h4 class="text-uppercase m-0" th:text="${offer.offer_company}">회사이름</h4>
+                            <hr class="my-4 mx-auto" />
+                            <div class="small text-black-50">
+                                <p th:text="${offer.offer_title}">글 제목</p>
+                                <p th:text="${offer.offer_salary + '만원'}">급여</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4 mb-3 mb-md-0" th:each="offer : ${offer.subList(2, 3)}">
+                <a th:href="@{/offerInfo(offer_no=${offer.offer_no})}">
+                    <div class="card py-4 h-100">
+                        <div class="card-body text-center">
+                            <h4 class="text-uppercase m-0" th:text="${offer.offer_company}">회사이름</h4>
+                            <hr class="my-4 mx-auto" />
+                            <div class="small text-black-50">
+                                <p th:text="${offer.offer_title}">글 제목</p>
+                                <p th:text="${offer.offer_salary + '만원'}">급여</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 mb-3 mb-md-0" th:each="offer : ${offer.subList(3, 4)}">
+                <a th:href="@{/offerInfo(offer_no=${offer.offer_no})}">
+                    <div class="card py-4 h-100">
+                        <div class="card-body text-center">
+                            <h4 class="text-uppercase m-0" th:text="${offer.offer_company}">회사이름</h4>
+                            <hr class="my-4 mx-auto" />
+                            <div class="small text-black-50">
+                                <p th:text="${offer.offer_title}">글 제목</p>
+                                <p th:text="${offer.offer_salary + '만원'}">급여</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+<br /> <br />
+<h4 style="text-align: center; color: #2ba0db;"> 추천 <span style="color: black;">에디터</span> </h4>
+
+
+<section class="contact-section bg-black">
+    <div class="container">
+        <div class="row gx-4 gx-lg-5">
+            <div class="col-md-4 mb-3 mb-md-0" th:each="seeker : ${seeker.subList(1, 2)}">
+                <a th:href="@{/seekerInfo(seeker_no=${seeker.seeker_no})}">
+                    <div class="card py-4 h-100">
+                        <div class="card-body text-center">
+                            <h4 class="text-uppercase m-0" th:text="${seeker.user_name}">유저이름</h4>
+                            <hr class="my-4 mx-auto" />
+                            <div class="small text-black-50">
+                                <p th:text="${seeker.seeker_title}">글 제목</p>
+                                <p th:text="${'건당  ' + seeker.seeker_case + '원'}">건당페이</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4 mb-3 mb-md-0" th:each="seeker : ${seeker.subList(2, 3)}">
+                <a th:href="@{/seekerInfo(seeker_no=${seeker.seeker_no})}">
+                    <div class="card py-4 h-100">
+                        <div class="card-body text-center">
+                            <h4 class="text-uppercase m-0" th:text="${seeker.user_name}">유저이름</h4>
+                            <hr class="my-4 mx-auto" />
+                            <div class="small text-black-50">
+                                <p th:text="${seeker.seeker_title}">글 제목</p>
+                                <p th:text="${'건당  ' + seeker.seeker_case + '원'}">건당페이</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div><div class="col-md-4 mb-3 mb-md-0" th:each="seeker : ${seeker.subList(3, 4)}">
+            <a th:href="@{/seekerInfo(seeker_no=${seeker.seeker_no})}">
+                <div class="card py-4 h-100">
+                    <div class="card-body text-center">
+                        <h4 class="text-uppercase m-0" th:text="${seeker.user_name}">유저이름</h4>
+                        <hr class="my-4 mx-auto" />
+                        <div class="small text-black-50">
+                            <p th:text="${seeker.seeker_title}">글 제목</p>
+                            <p th:text="${'건당  ' + seeker.seeker_case + '원'}">건당페이</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        </div>
+    </div>
+</section>
+
+<br/><br/>
+
+<div class="container">
+    <div class="row">
+        <div class="col" style="display: inline-block;">
+            <table class="table table-bordered" >
+                <tr>
+                    <td>자유게시판</td>
+                </tr>
+                <tr th:each="board : ${boardVOFree}">
+                    <td><a th:href="@{/boardInfo(comm_no=${board.comm_no})}" th:text="${board.comm_title}"></a></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col" style="display: inline-block;">
+            <table class="table table-bordered" >
+                <tr>
+                    <td>피드백</td>
+                </tr>
+                <tr th:each="board : ${boardVOFeed}">
+                    <td><a th:href="@{/boardInfo(comm_no=${board.comm_no})}" th:text="${board.comm_title}"></a></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col" style="display: inline-block;">
+            <table class="table table-bordered" >
+                <tr>
+                    <td>수익공개</td>
+                </tr>
+                <tr th:each="board : ${boardVORevenue}">
+                    <td><a th:href="@{/boardInfo(comm_no=${board.comm_no})}" th:text="${board.comm_title}"></a></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col" style="display: inline-block;">
+            <table class="table table-bordered" >
+                <tr>
+                    <td>세금게시판</td>
+                </tr>
+                <tr th:each="board : ${boardVOTax}">
+                    <td><a th:href="@{/boardInfo(comm_no=${board.comm_no})}" th:text="${board.comm_title}"></a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+<br/><br/><br/><br/><br/><br/>
+
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- jQuery 로드 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- SmartEditor2 텍스트편집기 -->
+    <script src="/libs/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+
+
+    <th:block th:insert="~{assist/header :: head_header}" />
+</head>
+<body>
+<th:block th:insert="~{assist/header :: contents}"/>
+
+<h1>구인 글작성</h1>
+
+<form id="offerForm" th:object="${offer}" method="post" >
+    <div class="container">
+        <div class="mb-3">
+            <label for="categorySelect" class="form-label">카테고리</label>
+            <select th:field="*{offer_category}" class="form-select" id="categorySelect">
+                <option value="editer">편집자</option>
+                <option value="thumbnailer">썸네일러</option>
+                <option value="sdCharacter">SD캐릭터</option>
+                <option value="virtual">버츄얼</option>
+                <option value="camaraMan">촬영팀</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="companyInput" class="form-label">회사</label>
+            <input th:field="*{offer_company}" class="form-control" id="companyInput" >
+        </div>
+        <div class="mb-3">
+            <label for="titleInput" class="form-label">제목</label>
+            <input th:field="*{offer_title}" class="form-control" id="titleInput" >
+        </div>
+        <div class="mb-3">
+            <label for="careerInput" class="form-label">경력</label>
+            <input th:field="*{offer_career}" class="form-control" id="careerInput" >
+        </div>
+        <div class="mb-3">
+            <label for="toolsInput" class="form-label">사용툴</label>
+            <input th:field="*{offer_tools}" class="form-control" id="toolsInput" >
+        </div>
+        <div class="mb-3">
+            <label for="typeInput" class="form-label">고용형태</label>
+            <input th:field="*{offer_type}" class="form-control" id="typeInput" >
+        </div>
+        <div class="mb-3">
+            <label for="salaryInput" class="form-label">급여</label>
+            <input th:field="*{offer_salary}" class="form-control" id="salaryInput" >
+        </div>
+
+
+        <!-- 스마트 에디터 플레이스홀더 -->
+        <div id="smarteditor">
+            <textarea id="offer_content" name="offer_content" rows="10" cols="100" style="width: 100%;"></textarea>
+        </div>
+        <input type="submit" value="저장" th:onclick= "submitPost()">
+        <input type="button" value="취소" th:onclick="|location.href='@{/mainPage}'|">
+    </div>
+    <br/><br/><br/><br/>
+</form>
+<script>
+        let oEditors = []
+
+        smartEditor = function(){
+            console.log("네이버 스마트 에디터")
+                nhn.husky.EZCreator.createInIFrame({
+                    oAppRef: oEditors,
+                    elPlaceHolder: "offer_content",
+                    sSkinURI: "/libs/smarteditor/SmartEditor2Skin.html",
+                    fCreator: "createSEditor2"
+                })
+        }
+        $(document).ready(function(){
+            smartEditor()
+        })
+        </script>
+<script>
+        submitPost = function(){
+            oEditors.getById["offer_content"].exec("UPDATE_CONTENTS_FIELD", []);
+            let content = oEditors.getById["offer_content"].getText();  // Get plain text content
+
+            if(content == ""){
+                alert("내용을 입력해주세요")
+                oEditors.getById["offer_content"].exec(FOCUS)
+                return
+            }else{
+                console.log(content)
+                offer_content = content
+                console.log(offer_content)
+            }
+        }
+
+
+         </script>
+
+
+
+</body>
+</html>

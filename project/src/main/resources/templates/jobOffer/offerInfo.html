@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <th:block th:insert="~{assist/header :: head_header}" />
+</head>
+<body>
+<th:block th:insert="~{assist/header :: contents}"/>
+<br/><br/><br/>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <span th:text="${offer.offer_company}" style="font-size: 30px; font-family: 'Arial', sans-serif;">회사이름</span></br>
+            <span th:text="${offer.offer_title} " style="font-size: 24px; font-family: 'Arial', sans-serif;">제목</span><br/>
+            <span th:text="'경력: ' + ${offer.offer_career + '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'}" style="font-size: 15px; font-family: 'Arial', sans-serif;"></span>
+            <span th:text="'고용형태: ' + ${offer.offer_type}" style="font-size: 15px; font-family: 'Arial', sans-serif;"></span><br/>
+
+            <span th:text="'사용툴: ' + ${offer.offer_tools}+ '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'" style="font-size: 15px; font-family: 'Arial', sans-serif;"></span>
+            <span th:text="'급여: ' + ${offer.offer_salary} + '만원'" style="font-size: 15px; font-family: 'Arial', sans-serif;"></span>
+        </div>
+        <div class="col-4">
+            <br/><br/>
+            <span th:text="${'담당자: ' + member.user_id}" style="font-size: 15px; font-family: 'Arial', sans-serif;">담당자</span><br/>
+            <span th:text="${'이메일: ' + member.user_email}" style="font-size: 15px; font-family: 'Arial', sans-serif;">이메일</span><br/>
+            <span th:text="${'전화번호: ' + member.user_tel}" style="font-size: 15px; font-family: 'Arial', sans-serif;">전화번호</span>
+        </div>
+    </div>
+
+
+
+<div class="container" style="border: 1px solid #ccc; height: 200px; background-color: #f0f8ff;" >
+    <span th:text=" ${offer.offer_content}"></span>
+</div>
+</div>
+
+</body>
+</html>
