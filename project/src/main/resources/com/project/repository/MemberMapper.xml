@@ -20,4 +20,18 @@
         select * from userTable where user_no=#{user_no}
     </select>
 
+    <select id="idCheck" parameterType="String" resultType="int">
+        SELECT COUNT(user_id) FROM userTable WHERE user_id= #{user_id}
+    </select>
+
+    <update id="modifyId">
+        UPDATE userTable
+        SET user_pw = #{user_pw},
+        user_name = #{user_name},
+        user_tel = #{user_tel}
+        WHERE user_id = #{user_id}
+    </update>
+
+
+
 </mapper>

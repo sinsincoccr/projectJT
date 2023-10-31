@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
@@ -58,6 +59,32 @@ public class SeekerController {
         model.addAttribute( "user", memberVO);
         return "jobSeeker/seekerInfo";
     }
+
+    @GetMapping("/updateSeeker")
+    public String seekerUpdate(Long seeker_no, Model model) {
+        log.info("seeker_no : {}", seeker_no);
+        SeekerVO seekerVO = seekerService.getSeeker(seeker_no);
+        model.addAttribute( "seeker", seekerVO);
+        return "jobSeeker/updateSeeker";
+    }
+
+    @PostMapping("/updateSeeker")
+    public String seekerUpdatePro(Long seeker_no , @ModelAttribute SeekerVO seekerVO) {
+        log.info("seeker_no : {}", seeker_no);
+        seekerService.updateSeeker(seekerVO);
+        return "redirect:/seekerInfo?seeker_no=" + seeker_no;
+
+    }
+
+    // 글 삭제
+    @PostMapping("/deleteSeeker")
+    public String deletePro(@RequestParam Long seeker_no) {
+        log.info("delete seeker_no : {}", seeker_no);
+        seekerService.deleteSeeker(seeker_no);
+        return "redirect:/mainPage";
+    }
+
+
 
 
 

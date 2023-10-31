@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+          integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+          crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+          integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+          crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+          integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+          crossorigin="anonymous"></script>
+
+  <th:block th:insert="~{assist/header :: head_header}" />
+</head>
+<body>
+<th:block th:insert="~{assist/header :: contents}"/>
+<h1> 제품 작성 페이지 </h1>
+
+<form th:action th:object="${product}" method="post" enctype="multipart/form-data">
+
+
+  <div class="container">
+    <div class="mb-3">
+      <label for="categorySelect" class="form-label">카테고리</label>
+      <select th:field="*{product_category}" class="form-select" id="categorySelect">
+        <option value="premierProStore">프리미어프로</option>
+        <option value="finalCutStore">파이널컷</option>
+        <option value="imageStore">이미지</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="titleInput" class="form-label">제목</label>
+      <input th:field="*{product_title}" class="form-control" id="titleInput"/>
+    </div>
+    <div class="mb-3">
+      <label for="imgInput" class="form-label">이미지</label>
+      <input th:field="*{product_img}" class="form-control" id="imgInput" />
+    </div>
+    <div class="mb-3">
+      <label for="contentInput" class="form-label">내용</label>
+      <input th:field="*{product_content}" class="form-control" id="contentInput"/>
+    </div>
+    <div class="mb-3">
+      <label for="priceInput" class="form-label">가격</label>
+      <input th:field="*{product_price}" class="form-control" id="priceInput"/>
+    </div>
+    <div class="mb-3">
+      <label for="form-img" class="form-label">이미지 첨부</label>
+      <input name="product_file" class="form-control" type="file" id="form-img">
+    </div>
+    <div class="mb-3">
+      <input type="submit" value="저장" >
+      <input type="button" value="취소" th:onclick="|location.href='@{/mainPage}'|">
+    </div>
+  </div>
+  <br/><br/><br/><br/>
+</form>
+
+</body>
+</html>

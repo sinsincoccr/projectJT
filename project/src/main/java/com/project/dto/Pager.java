@@ -15,7 +15,7 @@ public class Pager {
     private String searchType; // 검색 유형(기준) T, C, W, TW, TC, CW
 
     public Pager(){
-        this(1, 10, 10);
+        this(1, 12, 10);
     }
     public Pager(int pageNum, int boardSize, int pageSize){
         this.pageNum = pageNum; this.boardSize = boardSize;

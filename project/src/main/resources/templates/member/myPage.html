@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My Page</title>
+    <th:block th:insert="~{assist/header :: head_header}" />
+</head>
+<body>
+<th:block th:insert="~{assist/header :: contents}"/>
+
+<h1>My Page</h1>
+
+<!-- Display user information -->
+<div th:if="${member != null}">
+    <p>User ID: <span th:text="${member.user_id}"></span></p>
+    <p>User Name: <span th:text="${member.user_name}"></span></p>
+    <p>Email: <span th:text="${member.user_email}"></span></p>
+    <p>Phone Number: <span th:text="${member.user_tel}"></span></p>
+</div>
+
+<!-- If member is null (not logged in) -->
+<div th:unless="${member != null}">
+    <p>Please log in to view your page.</p>
+</div>
+
+
+<button type="button" class="btn btn-secondary" th:onclick="|location.href='@{/modifyId}'|">정보수정</button>
+
+<table>
+    <thead>
+    <tr>
+        <th>주문번호</th>
+        <th>상품번호</th>
+        <th>상품명</th>
+        <th>구매일시</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="order, i : ${orderList}">
+        <td th:text="${order.order_no}"></td>
+        <td th:text="${order.product_no}"></td>
+        <td th:text="${productList[i.index].product_title}"></td>
+        <td th:text="${order.regDate}"></td>
+    </tr>
+
+
+    </tbody>
+</table>
+
+
+</body>
+</html>

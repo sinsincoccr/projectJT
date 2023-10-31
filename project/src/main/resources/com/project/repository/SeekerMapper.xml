@@ -9,21 +9,138 @@
         select * from job_seeker where seeker_category = 'editerSeeker' ORDER BY seeker_no ASC
     </select>
 
+    <select id="findEditerSeekerCount" resultType="long">
+        select count(*) from job_seeker where seeker_category = 'editerSeeker' ORDER BY seeker_no ASC
+
+    </select>
+
+    <select id="getEditerSeekerListWithPaging" resultType="SeekerVO">
+        <![CDATA[
+    select r, B.* from
+        (select rownum r, A.* from
+            (select * from job_seeker
+            where seeker_category = 'editerSeeker'
+
+            ) A
+            where rownum <= (#{pageNum} * #{boardSize})
+        ) B
+    where r > (#{pageNum} - 1) * #{boardSize}
+    ]]>
+    </select>
+
+
+
     <select id="findThumbnailerSeeker" resultType="SeekerVO">
         select * from job_seeker where seeker_category = 'thumbnailerSeeker' ORDER BY seeker_no ASC
     </select>
+
+    <select id="findThumbnailerSeekerCount" resultType="long">
+        select count(*) from job_seeker where seeker_category = 'thumbnailerSeeker' ORDER BY seeker_no ASC
+
+    </select>
+
+    <select id="getThumbnailerSeekerListWithPaging" resultType="SeekerVO">
+        <![CDATA[
+    select r, B.* from
+        (select rownum r, A.* from
+            (select * from job_seeker
+            where seeker_category = 'thumbnailerSeeker'
+
+            ) A
+            where rownum <= (#{pageNum} * #{boardSize})
+        ) B
+    where r > (#{pageNum} - 1) * #{boardSize}
+    ]]>
+    </select>
+
+
+
+
 
     <select id="findSdCharacterSeeker" resultType="SeekerVO">
         select * from job_seeker where seeker_category = 'sdCharacterSeeker' ORDER BY seeker_no ASC
     </select>
 
+    <select id="findSdCharacterSeekerCount" resultType="long">
+        select count(*) from job_seeker where seeker_category = 'sdCharacterSeeker' ORDER BY seeker_no ASC
+
+    </select>
+
+    <select id="getSdCharacterSeekerListWithPaging" resultType="SeekerVO">
+        <![CDATA[
+    select r, B.* from
+        (select rownum r, A.* from
+            (select * from job_seeker
+            where seeker_category = 'sdCharacterSeeker'
+
+            ) A
+            where rownum <= (#{pageNum} * #{boardSize})
+        ) B
+    where r > (#{pageNum} - 1) * #{boardSize}
+    ]]>
+    </select>
+
+
+
+
+
+
     <select id="findVirtualSeeker" resultType="SeekerVO">
         select * from job_seeker where seeker_category = 'virtualSeeker' ORDER BY seeker_no ASC
     </select>
 
+    <select id="findVirtualSeekerCount" resultType="long">
+        select count(*) from job_seeker where seeker_category = 'virtualSeeker' ORDER BY seeker_no ASC
+
+    </select>
+
+    <select id="getVirtualSeekerListWithPaging" resultType="SeekerVO">
+        <![CDATA[
+    select r, B.* from
+        (select rownum r, A.* from
+            (select * from job_seeker
+            where seeker_category = 'virtualSeeker'
+
+            ) A
+            where rownum <= (#{pageNum} * #{boardSize})
+        ) B
+    where r > (#{pageNum} - 1) * #{boardSize}
+    ]]>
+    </select>
+
+
+
+
+
+
+
     <select id="findCamaraManSeeker" resultType="SeekerVO">
         select * from job_seeker where seeker_category = 'camaraManSeeker' ORDER BY seeker_no ASC
     </select>
+
+    <select id="findCamaraManSeekerCount" resultType="long">
+        select count(*) from job_seeker where seeker_category = 'camaraManSeeker' ORDER BY seeker_no ASC
+
+    </select>
+
+    <select id="getCamaraManSeekerListWithPaging" resultType="OfferVO">
+        <![CDATA[
+    select r, B.* from
+        (select rownum r, A.* from
+            (select * from job_seeker
+            where seeker_category = 'camaraManSeeker'
+
+            ) A
+            where rownum <= (#{pageNum} * #{boardSize})
+        ) B
+    where r > (#{pageNum} - 1) * #{boardSize}
+    ]]>
+    </select>
+
+
+
+
+
 
     <!--  구인글 한개 조회  -->
     <select id="getSeeker" resultType="SeekerVO">
@@ -36,7 +153,25 @@
         values (job_seeker_seq.nextval, #{seeker_category}, #{seeker_title}, #{seeker_career}, #{seeker_tools}, #{seeker_type}, #{seeker_case}, #{seeker_min}, #{seeker_portofolio}, sysdate, #{user_no}, #{user_name})
     </insert>
 
+    <update id="updateSeeker">
+        update job_seeker
+        set
+        seeker_category=#{seeker_category},
+        seeker_title=#{seeker_title},
+        seeker_career=#{seeker_career},
+        seeker_tools=#{seeker_tools},
+        seeker_type=#{seeker_type},
+        seeker_case=#{seeker_case},
+        seeker_min=#{seeker_min},
+        seeker_portofolio=#{seeker_portofolio},
+        regDate=sysdate
+        where seeker_no=#{seeker_no}
+    </update>
 
+    <delete id="deleteSeeker">
+        delete from job_seeker
+        where seeker_no = #{seeker_no}
+    </delete>
 
 
 

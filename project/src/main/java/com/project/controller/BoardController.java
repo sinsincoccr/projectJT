@@ -3,9 +3,11 @@ package com.project.controller;
 import com.project.domain.BoardVO;
 import com.project.domain.MemberVO;
 import com.project.domain.OfferVO;
+import com.project.domain.ReplyVO;
 import com.project.dto.PageDTO;
 import com.project.dto.Pager;
 import com.project.service.BoardService;
+import com.project.service.ReplyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -14,12 +16,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @Slf4j
 @RequiredArgsConstructor
 public class BoardController {
     private final BoardService boardService;
+    private final ReplyService replyService;
 
     // 글작성 폼
     @GetMapping("/add")
@@ -51,13 +55,49 @@ public class BoardController {
         return "board/detail";
     }
 
-    //쇼 정보 확인
     @GetMapping("/boardInfo")
-    public String boardInfo(Long comm_no , Model model){
+    public String boardInfo(Long comm_no , Model model, HttpSession session){
+        log.info("comm_no : {}", comm_no);
+        BoardVO boardVO = boardService.getBoard(comm_no);
+        boardService.updateView(comm_no);
+        model.addAttribute("board", boardVO);
+
+
+        if (session.getAttribute("loginMember") != null) {
+            MemberVO loginMember = (MemberVO) session.getAttribute("loginMember");
+            String sessionNo = String.valueOf(loginMember.getUser_no());
+            model.addAttribute("sessionNo", sessionNo); // result를 모델에 추가
+        }
+
+
+
+        return "board/boardInfo";
+    }
+
+
+
+    @GetMapping("/updateBoard")
+    public String boardUpdate(Long comm_no, Model model) {
         log.info("comm_no : {}", comm_no);
         BoardVO boardVO = boardService.getBoard(comm_no);
         model.addAttribute( "board", boardVO);
-        return "board/boardInfo";
+        return "board/updateBoard";
+    }
+
+    @PostMapping("/updateBoard")
+    public String boardUpdatePro(Long comm_no , @ModelAttribute BoardVO boardVO) {
+        log.info("board_no : {}", comm_no);
+        boardService.updateBoard(boardVO);
+        return "redirect:/boardInfo?comm_no=" + comm_no;
+
+    }
+
+    // 글 삭제
+    @PostMapping("/deleteBoard")
+    public String deletePro(@RequestParam Long comm_no) {
+        log.info("delete comm_no : {}", comm_no);
+        boardService.deleteBoard(comm_no);
+        return "redirect:/mainPage";
     }
 
 

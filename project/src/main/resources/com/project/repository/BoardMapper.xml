@@ -6,32 +6,10 @@
 
 
     <insert id="add">
-        insert into comm_board (comm_no ,comm_category, comm_title, comm_content, user_no, regDate)
-        values (comm_board_seq.nextval, #{comm_category}, #{comm_title}, #{comm_content}, #{user_no}, sysdate)
+        insert into comm_board (comm_no ,comm_category, comm_title, comm_content, user_no, regDate, comm_views)
+        values (comm_board_seq.nextval, #{comm_category}, #{comm_title}, #{comm_content}, #{user_no}, sysdate, 0)
     </insert>
 
-
-
-    <sql id="search">
-        <trim prefix="where" prefixOverrides="or">
-            <foreach item="searchType" collection="searchTypeArr">
-                <trim prefix="or">
-                    <choose>
-                        <when test="searchType == 't'.toString()">
-                            title like '%' || #{keyword} || '%'
-                        </when>
-                        <when test="searchType == 'c'.toString()">
-                            content like '%' || #{keyword} || '%'
-                        </when>
-                        <when test="searchType == 'w'.toString()">
-                            writer like '%' || #{keyword} || '%'
-                        </when>
-                    </choose>
-                </trim>
-            </foreach>
-        </trim>
-
-    </sql>
 
 
 
@@ -42,11 +20,7 @@
         (select rownum r, A.* from
             (select * from comm_board
             where comm_category = 'freeBoard'
-    ]]>
 
-        <include refid="search"></include>
-
-        <![CDATA[
             ) A
             where rownum <= (#{pageNum} * #{boardSize})
         ) B
@@ -61,11 +35,7 @@
         (select rownum r, A.* from
             (select * from comm_board
             where comm_category = 'feedbackBoard'
-            ]]>
 
-        <include refid="search"></include>
-
-        <![CDATA[
             ) A
             where rownum <= (#{pageNum} * #{boardSize})
         ) B
@@ -79,11 +49,7 @@
         (select rownum r, A.* from
             (select * from comm_board
             where comm_category = 'revenueBoard'
-            ]]>
 
-        <include refid="search"></include>
-
-        <![CDATA[
             ) A
             where rownum <= (#{pageNum} * #{boardSize})
         ) B
@@ -97,11 +63,7 @@
         (select rownum r, A.* from
             (select * from comm_board
             where comm_category = 'taxBoard'
-            ]]>
 
-        <include refid="search"></include>
-
-        <![CDATA[
             ) A
             where rownum <= (#{pageNum} * #{boardSize})
         ) B
@@ -111,30 +73,48 @@
 
     <select id="getFreeBoard" resultType="long">
         select count(*) from comm_board where comm_category = 'freeBoard' ORDER BY comm_no ASC
-        <include refid="search"></include>
+
     </select>
 
     <select id="getFeedbackBoard" resultType="long">
         select count(*) from comm_board where comm_category = 'feedbackBoard' ORDER BY comm_no ASC
-        <include refid="search"></include>
+
     </select>
 
     <select id="getRevenueBoard" resultType="long">
         select count(*) from comm_board where comm_category = 'revenueBoard' ORDER BY comm_no ASC
-        <include refid="search"></include>
+
     </select>
 
     <select id="getTaxBoard" resultType="long">
         select count(*) from comm_board where comm_category = 'taxBoard' ORDER BY comm_no ASC
-        <include refid="search"></include>
+
     </select>
 
     <select id="getBoard" resultType="BoardVO">
         select * from comm_board where comm_no=#{comm_no}
     </select>
 
+    <update id="updateBoard">
+        update comm_board
+        set
+        comm_category=#{comm_category},
+        comm_title=#{comm_title},
+        comm_content=#{comm_content},
+        regDate=sysdate
+        where comm_no=#{comm_no}
+    </update>
 
+    <delete id="deleteBoard">
+        delete from comm_board
+        where comm_no = #{comm_no}
+    </delete>
 
+    <update id="updateView">
+        UPDATE comm_board
+        SET comm_views = comm_views + 1
+        WHERE comm_no = #{comm_no}
+    </update>
 
 
 

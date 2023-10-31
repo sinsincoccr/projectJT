@@ -2,6 +2,7 @@ package com.project.service;
 
 
 import com.project.domain.BoardVO;
+import com.project.domain.OfferVO;
 import com.project.dto.Pager;
 import com.project.repository.BoardMapper;
 import lombok.RequiredArgsConstructor;
@@ -66,4 +67,23 @@ public class BoardServiceImpl implements BoardService{
     public BoardVO getBoard(Long comm_no) {
         return boardMapper.getBoard(comm_no);
     }
+
+    @Override
+    public void updateView(Long comm_no) {
+        boardMapper.updateView(comm_no);
+    }
+
+    @Override
+    public void updateBoard(BoardVO boardVO) {
+        boardMapper.updateBoard(boardVO);
+    }
+
+    @Override
+    public void deleteBoard(Long comm_no) {
+        boardMapper.deleteBoard(comm_no);
+    }
+
+
+
+
 }

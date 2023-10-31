@@ -16,4 +16,9 @@ public interface MemberService{
     MemberVO login(MemberVO member);
 
     public MemberVO getMember(Long user_no);
+
+    public int idCheck(String id);
+
+    void modifyId(MemberVO member);
+
 }

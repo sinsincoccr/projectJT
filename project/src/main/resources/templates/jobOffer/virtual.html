@@ -33,7 +33,7 @@
         <!-- form fields here -->
         <input type="button" th:if="${session.loginMember != null}" value="글작성" th:onclick="|location.href='@{/writeOffer}'|" style="padding: 5px 10px; background: #2ba0db; color: #fff; font-size: 13px; text-decoration: none; text-transform: uppercase; border: none; cursor: pointer;">
     </form>
-</div>
+
 
 
 <h4 style="text-align: center; color: #2ba0db;"> 구인 <span style="color: black;">리스트</span> </h4>
@@ -55,8 +55,24 @@
         </a>
     </div>
 
-
-
+<div class="row">
+    <div class="col-sm-12 col-md-7">
+        <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
+            <ul class="pagination float-right">
+                <li th:if="${pageDTO.prev}" class="paginate_button page-item previous" id="dataTable_previous">
+                    <a th:href="@{/jobOffer/virtual(pageNum=${pageDTO.startPage - 1},searchType=${pageDTO.pager.searchType},keyword=${pageDTO.pager.keyword})}" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
+                </li>
+                <li th:each="page, pageStat : ${pageDTO.getPageNumList()}" class="paginate_button page-item" th:classappend="${pageDTO.pager.pageNum == page} ? 'active'">
+                    <a th:href="@{/jobOffer/virtual(pageNum=${page},searchType=${pageDTO.pager.searchType},keyword=${pageDTO.pager.keyword})}" th:text="${page}" aria-controls="dataTable" th:data-dt-idx="${pageStat.count}" tabindex="0" class="page-link"></a>
+                </li>
+                <li th:if="${pageDTO.next}" class="paginate_button page-item next" id="dataTable_next">
+                    <a th:href="@{/jobOffer/virtual(pageNum=${pageDTO.endPage + 1},searchType=${pageDTO.pager.searchType},keyword=${pageDTO.pager.keyword})}" aria-controls="dataTable" th:data-dt-idx="${pageDTO.endPage}" tabindex="0" class="page-link">Next</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</div>
 
 </body>
 </html>

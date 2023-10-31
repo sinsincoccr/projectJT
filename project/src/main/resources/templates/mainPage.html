@@ -26,6 +26,29 @@
     <link rel="stylesheet" href="../fruitkha/fruitkha/assets/css/responsive.css">
     <!-- google font -->
     <th:block th:insert="~{assist/header :: head_header}" />
+
+    <style>
+    #goingTop {
+    position: fixed;
+    right: 5%;
+    bottom: 5%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    background-color: #6699cc;
+    color: #ffffff;
+    font-size: 25px;
+    box-shadow: 0px 0px 5px #3973ac;
+    cursor: pointer;
+    }
+    </style>
+
 </head>
 <body>
 <th:block th:insert="~{assist/header :: contents}"/>
@@ -138,60 +161,53 @@
         </div>
     </div>
 </section>
-
-<br/><br/>
-
+<br/><br/><br/>
 <div class="container">
     <div class="row">
-        <div class="col" style="display: inline-block;">
-            <table class="table table-bordered" >
-                <tr>
-                    <td>자유게시판</td>
-                </tr>
-                <tr th:each="board : ${boardVOFree}">
-                    <td><a th:href="@{/boardInfo(comm_no=${board.comm_no})}" th:text="${board.comm_title}"></a></td>
-                </tr>
-            </table>
+        <div class="col" style="display: inline-block; border: 1px solid #ccc; padding: 10px; margin-right: 10px;">
+            <h4 style="text-align: center;">자유게시판</h4>
+                <table class="table table-bordered">
+                    <tr th:each="board : ${boardVOFree}">
+                        <td><a th:href="@{/boardInfo(comm_no=${board.comm_no})}" th:text="${board.comm_title}"></a></td>
+                    </tr>
+                </table>
         </div>
 
-        <div class="col" style="display: inline-block;">
-            <table class="table table-bordered" >
-                <tr>
-                    <td>피드백</td>
-                </tr>
-                <tr th:each="board : ${boardVOFeed}">
-                    <td><a th:href="@{/boardInfo(comm_no=${board.comm_no})}" th:text="${board.comm_title}"></a></td>
-                </tr>
-            </table>
+        <div class="col" style="display: inline-block; border: 1px solid #ccc; padding: 10px; margin-right: 10px;">
+            <h4 style="text-align: center;">피드백</h4>
+                <table class="table table-bordered">
+                    <tr th:each="board : ${boardVOFeed}">
+                        <td><a th:href="@{/boardInfo(comm_no=${board.comm_no})}" th:text="${board.comm_title}"></a></td>
+                    </tr>
+                </table>
         </div>
 
-        <div class="col" style="display: inline-block;">
-            <table class="table table-bordered" >
-                <tr>
-                    <td>수익공개</td>
-                </tr>
-                <tr th:each="board : ${boardVORevenue}">
-                    <td><a th:href="@{/boardInfo(comm_no=${board.comm_no})}" th:text="${board.comm_title}"></a></td>
-                </tr>
-            </table>
+        <div class="col" style="display: inline-block; border: 1px solid #ccc; padding: 10px; margin-right: 10px;">
+            <h4 style="text-align: center;">수익공개</h4>
+                <table class="table table-bordered">
+                    <tr th:each="board : ${boardVORevenue}">
+                        <td><a th:href="@{/boardInfo(comm_no=${board.comm_no})}" th:text="${board.comm_title}"></a></td>
+                    </tr>
+                </table>
         </div>
 
-        <div class="col" style="display: inline-block;">
+        <div class="col" style="display: inline-block; border: 1px solid #ccc; padding: 10px;">
+            <h4 style="text-align: center;">세금게시판</h4>
             <table class="table table-bordered" >
-                <tr>
-                    <td>세금게시판</td>
-                </tr>
                 <tr th:each="board : ${boardVOTax}">
                     <td><a th:href="@{/boardInfo(comm_no=${board.comm_no})}" th:text="${board.comm_title}"></a></td>
                 </tr>
             </table>
-        </div>
+            </div>
     </div>
 </div>
 
 
 
+<div id="goingTop" onclick="window.scrollTo(0,0);"> ↑</div>
 <br/><br/><br/><br/><br/><br/>
+
+
 
 </body>
 </html>

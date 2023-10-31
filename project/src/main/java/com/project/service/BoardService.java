@@ -2,6 +2,7 @@ package com.project.service;
 
 
 import com.project.domain.BoardVO;
+import com.project.domain.OfferVO;
 import com.project.dto.Pager;
 
 import java.util.List;
@@ -27,4 +28,11 @@ public interface BoardService {
     Long getTaxBoard(Pager pager);
     // 글 한개 정보 가져오기
     BoardVO getBoard(Long comm_no);
+
+    void updateView(Long comm_no);
+
+    void updateBoard(BoardVO boardVO);
+
+    void deleteBoard(Long comm_no);
+
 }

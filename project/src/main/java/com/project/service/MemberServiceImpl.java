@@ -46,4 +46,18 @@ public class MemberServiceImpl implements MemberService{
         return memberVO;
     }
 
+    //아이디 중복체크 mapper 접근
+    @Override
+    public int idCheck(String id) {
+        int cnt = memberMapper.idCheck(id);
+        System.out.println("cnt: " + cnt);
+        return cnt;
+    }
+
+    @Override
+    public void modifyId(MemberVO member) {
+        memberMapper.modifyId(member);
+    }
+
+
 }

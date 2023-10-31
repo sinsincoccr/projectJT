@@ -21,12 +21,14 @@ public class LoginController {
     private final MemberService memberService;
 
     @RequestMapping("/")
-    public String home(@ModelAttribute MemberVO member, HttpServletRequest request, Model model) {
-        HttpSession session = request.getSession(false);
+    public String home(@ModelAttribute MemberVO member, HttpSession session,HttpServletRequest request, Model model) {
+        //HttpSession session = request.getSession(false);
         model.addAttribute("member", new MemberVO());
         //세션 없으면 로그인로 이동
         if (session == null) {
-            log.info("session X");
+            // 여기서 세션에 null 값을 넣어줍니다.
+            session.setAttribute("loginMember", null);
+            log.info("session null");
             return "login/login";
         }
         return "login/login";

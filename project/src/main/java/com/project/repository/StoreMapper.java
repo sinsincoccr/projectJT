@@ -1,8 +1,10 @@
 package com.project.repository;
 
 
+import com.project.domain.OfferVO;
 import com.project.domain.SeekerVO;
 import com.project.domain.StoreProductVO;
+import com.project.dto.Pager;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -10,11 +12,21 @@ import java.util.List;
 @Mapper
 public interface StoreMapper {
 
-    List<StoreProductVO> findPremierProStore();
+    Long findPremierProStoreCount(Pager pager);
+    List<StoreProductVO> getPremierProStoreListWithPaging(Pager pager);
 
-    List<StoreProductVO> findFinalCutStore();
 
-    List<StoreProductVO> findImageStore();
+
+    Long findFinalCutStoreCount(Pager pager);
+    List<StoreProductVO> getFinalCutStoreListWithPaging(Pager pager);
+
+
+
+    Long findImageStoreCount(Pager pager);
+    List<StoreProductVO> getImageStoreListWithPaging(Pager pager);
+
+
+
 
     List<StoreProductVO> findPowerBannerStore();
 
@@ -22,5 +34,11 @@ public interface StoreMapper {
 
     // 글 저장
     void addProductForm(StoreProductVO storeProductVO);
+
+    void updateStore(StoreProductVO storeProductVO);
+
+    void deleteProduct(Long product_no);
+
+
 
 }

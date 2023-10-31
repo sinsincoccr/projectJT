@@ -25,9 +25,8 @@
 <br/><br/>
 </form>
 <div class="container">
-    <form th:action="@{/writeProduct}" th:object="${store}" method="post" enctype="multipart/form-data" style="text-align: right;">
-        <!-- form fields here -->
-        <input type="button" th:if="${session.loginMember != null}" value="글작성" th:onclick="|location.href='@{/writeProduct}'|" style="padding: 5px 10px; background: #2ba0db; color: #fff; font-size: 13px; text-decoration: none; text-transform: uppercase; border: none; cursor: pointer;">
+    <form th:action="@{/writeProduct}" th:object="${storeProduct}" method="post" enctype="multipart/form-data" style="text-align: right;">
+        <input type="button" th:if="${session.loginMember != null and session.loginMember.user_state == 'master'}" value="글작성" th:onclick="|location.href='@{/writeProduct}'|" style="padding: 5px 10px; background: #2ba0db; color: #fff; font-size: 13px; text-decoration: none; text-transform: uppercase; border: none; cursor: pointer;">
     </form>
 </div>
 
@@ -38,22 +37,40 @@
 
 <div class="container">
     <div class="row">
-        <div th:each="product : ${product}" class="col-md-3">
-            <a th:href="@{/productInfo(product_no=${product.product_no})}">
+        <div th:each="storeProduct : ${storeProduct}" class="col-md-3">
+            <a th:href="@{/productInfo(product_no=${storeProduct.product_no})}">
                 <div class="card" style="border: 1px solid #ccc;">
                     <!-- 이미지를 표시하는 <img> 태그를 사용 -->
-                    <img class="card-img-top" img th:src="@{|/upload/${product.product_img}|}" width="200px"  height="100px"/>
+                    <img class="card-img-top" img th:src="@{|/upload/${storeProduct.product_img}|}" width="200px"  height="100px"/>
                     <div class="card-body">
-                        <p class="card-text" th:text="${product.product_title}"></p>
-                        <p class="card-text" th:text="${product.product_price + '원'}"></p>
+                        <p class="card-text" th:text="${storeProduct.product_title}"></p>
+                        <p class="card-text" th:text="${storeProduct.product_price + '원'}"></p>
                     </div>
                 </div>
             </a>
         </div>
     </div>
+
+
+<div class="row">
+    <div class="col-sm-12 col-md-7">
+        <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
+            <ul class="pagination float-right">
+                <li th:if="${pageDTO.prev}" class="paginate_button page-item previous" id="dataTable_previous">
+                    <a th:href="@{/store/finalCutStore(pageNum=${pageDTO.startPage - 1},searchType=${pageDTO.pager.searchType},keyword=${pageDTO.pager.keyword})}" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
+                </li>
+                <li th:each="page, pageStat : ${pageDTO.getPageNumList()}" class="paginate_button page-item" th:classappend="${pageDTO.pager.pageNum == page} ? 'active'">
+                    <a th:href="@{/store/finalCutStore(pageNum=${page},searchType=${pageDTO.pager.searchType},keyword=${pageDTO.pager.keyword})}" th:text="${page}" aria-controls="dataTable" th:data-dt-idx="${pageStat.count}" tabindex="0" class="page-link"></a>
+                </li>
+                <li th:if="${pageDTO.next}" class="paginate_button page-item next" id="dataTable_next">
+                    <a th:href="@{/store/finalCutStore(pageNum=${pageDTO.endPage + 1},searchType=${pageDTO.pager.searchType},keyword=${pageDTO.pager.keyword})}" aria-controls="dataTable" th:data-dt-idx="${pageDTO.endPage}" tabindex="0" class="page-link">Next</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
 
-
+</div>
 
 
 </body>

@@ -9,9 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
@@ -43,10 +41,7 @@ public class OfferController {
         return "redirect:/jobOffer/{offerCategory}";
     }
 
-
-
-
-    //쇼 정보 확인
+    //정보 확인
     @GetMapping("/offerInfo")
     public String offerInfo(Long offer_no , Model model){
         log.info("offer_no : {}", offer_no);
@@ -57,8 +52,29 @@ public class OfferController {
         return "jobOffer/offerInfo";
     }
 
+    @GetMapping("/updateOffer")
+    public String offerUpdate(Long offer_no, Model model) {
+        log.info("offer_no : {}", offer_no);
+        OfferVO offerVO = offerService.getOffer(offer_no);
+        model.addAttribute( "offer", offerVO);
+        return "jobOffer/updateOffer";
+    }
 
+    @PostMapping("/updateOffer")
+    public String offerUpdatePro(Long offer_no , @ModelAttribute OfferVO offerVO) {
+        log.info("offer_no : {}", offer_no);
+        offerService.updateOffer(offerVO);
+        return "redirect:/offerInfo?offer_no=" + offer_no;
 
+    }
+
+    // 글 삭제
+    @PostMapping("/deleteOffer")
+    public String deletePro(@RequestParam Long offer_no) {
+        log.info("delete offer_no : {}", offer_no);
+        offerService.deleteOffer(offer_no);
+        return "redirect:/mainPage";
+    }
 
 
 

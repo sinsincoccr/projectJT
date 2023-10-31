@@ -9,21 +9,128 @@
         select * from job_offer where offer_category = 'editer' ORDER BY offer_no ASC
     </select>
 
+    <select id="findEditerCount" resultType="long">
+        select count(*) from job_offer where offer_category = 'editer' ORDER BY offer_no ASC
+
+    </select>
+
+    <select id="getEditorListWithPaging" resultType="OfferVO">
+        <![CDATA[
+    select r, B.* from
+        (select rownum r, A.* from
+            (select * from job_offer
+            where offer_category = 'editer'
+
+            ) A
+            where rownum <= (#{pageNum} * #{boardSize})
+        ) B
+    where r > (#{pageNum} - 1) * #{boardSize}
+    ]]>
+    </select>
+
+
+
+
+
     <select id="findThumbnailer" resultType="OfferVO">
         select * from job_offer where offer_category = 'thumbnailer' ORDER BY offer_no ASC
     </select>
+
+    <select id="findThumbnailerCount" resultType="long">
+        select count(*) from job_offer where offer_category = 'thumbnailer' ORDER BY offer_no ASC
+
+    </select>
+
+    <select id="getThumbnailerListWithPaging" resultType="OfferVO">
+        <![CDATA[
+    select r, B.* from
+        (select rownum r, A.* from
+            (select * from job_offer
+            where offer_category = 'thumbnailer'
+
+            ) A
+            where rownum <= (#{pageNum} * #{boardSize})
+        ) B
+    where r > (#{pageNum} - 1) * #{boardSize}
+    ]]>
+    </select>
+
+
 
     <select id="findSdCharacter" resultType="OfferVO">
         select * from job_offer where offer_category = 'sdCharacter' ORDER BY offer_no ASC
     </select>
 
+    <select id="findSdCharacterCount" resultType="long">
+        select count(*) from job_offer where offer_category = 'sdCharacter' ORDER BY offer_no ASC
+
+    </select>
+
+    <select id="getSdCharacterListWithPaging" resultType="OfferVO">
+        <![CDATA[
+    select r, B.* from
+        (select rownum r, A.* from
+            (select * from job_offer
+            where offer_category = 'sdCharacter'
+
+            ) A
+            where rownum <= (#{pageNum} * #{boardSize})
+        ) B
+    where r > (#{pageNum} - 1) * #{boardSize}
+    ]]>
+    </select>
+
+
+
     <select id="findVirtual" resultType="OfferVO">
         select * from job_offer where offer_category = 'virtual' ORDER BY offer_no ASC
     </select>
 
+    <select id="findVirtualCount" resultType="long">
+        select count(*) from job_offer where offer_category = 'virtual' ORDER BY offer_no ASC
+
+    </select>
+
+    <select id="getVirtualListWithPaging" resultType="OfferVO">
+        <![CDATA[
+    select r, B.* from
+        (select rownum r, A.* from
+            (select * from job_offer
+            where offer_category = 'virtual'
+
+            ) A
+            where rownum <= (#{pageNum} * #{boardSize})
+        ) B
+    where r > (#{pageNum} - 1) * #{boardSize}
+    ]]>
+    </select>
+
+
+
     <select id="findCamaraMan" resultType="OfferVO">
         select * from job_offer where offer_category = 'camaraMan' ORDER BY offer_no ASC
     </select>
+
+    <select id="findCamaraManCount" resultType="long">
+        select count(*) from job_offer where offer_category = 'camaraMan' ORDER BY offer_no ASC
+
+    </select>
+
+    <select id="getCamaraManListWithPaging" resultType="OfferVO">
+        <![CDATA[
+    select r, B.* from
+        (select rownum r, A.* from
+            (select * from job_offer
+            where offer_category = 'camaraMan'
+
+            ) A
+            where rownum <= (#{pageNum} * #{boardSize})
+        ) B
+    where r > (#{pageNum} - 1) * #{boardSize}
+    ]]>
+    </select>
+
+
 
     <!--  구인글 한개 조회  -->
     <select id="getOffer" resultType="OfferVO">
@@ -32,11 +139,31 @@
 
     <!--  구인글 한개 삽입  -->
     <insert id="addOfferForm">
-        insert into job_offer (offer_no, offer_category, offer_company, offer_title, offer_career, offer_tools, offer_type, offer_salary, offer_content, regDate, user_no)
-        values (job_offer_seq.nextval, #{offer_category}, #{offer_company}, #{offer_title}, #{offer_career}, #{offer_tools}, #{offer_type}, #{offer_salary}, #{offer_content}, sysdate, #{user_no})
+        insert into job_offer (offer_no, offer_category, offer_company, offer_title, offer_career, offer_tools, offer_type, offer_salary, offer_content, offer_address ,regDate, user_no)
+        values (job_offer_seq.nextval, #{offer_category}, #{offer_company}, #{offer_title}, #{offer_career}, #{offer_tools}, #{offer_type}, #{offer_salary}, #{offer_content}, #{offer_address}, sysdate, #{user_no})
     </insert>
 
+    <update id="updateOffer">
+        update job_offer
+        set
+        offer_category=#{offer_category},
+        offer_company=#{offer_company},
+        offer_title=#{offer_title},
+        offer_career=#{offer_career},
+        offer_tools=#{offer_tools},
+        offer_type=#{offer_type},
+        offer_salary=#{offer_salary},
+        offer_content=#{offer_content},
+        offer_address=#{offer_address},
+        regDate=sysdate
+        where offer_no=#{offer_no}
+    </update>
 
+
+    <delete id="deleteOffer">
+        delete from job_offer
+        where offer_no = #{offer_no}
+    </delete>
 
 
 

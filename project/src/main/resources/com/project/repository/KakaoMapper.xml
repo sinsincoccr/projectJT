@@ -10,7 +10,9 @@
         values (store_order_seq.nextval, #{user_no}, #{product_no}, sysdate)
     </insert>
 
-
+    <select id="getOrderList" resultType="OrderListVO">
+        select * from store_order where user_no=#{user_no}
+    </select>
 
 
 

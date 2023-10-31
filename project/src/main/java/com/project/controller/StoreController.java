@@ -2,6 +2,7 @@ package com.project.controller;
 
 
 import com.project.domain.MemberVO;
+import com.project.domain.OfferVO;
 import com.project.domain.StoreProductVO;
 import com.project.service.FileUpload;
 import com.project.service.StoreService;
@@ -54,7 +55,7 @@ public class StoreController {
 
     }
 
-    //쇼 정보 확인
+
     @GetMapping("/productInfo")
     public String offerInfo(Long product_no , Model model, HttpSession session){
         log.info("product_no : {}", product_no);
@@ -68,6 +69,33 @@ public class StoreController {
     @GetMapping("/upload/{product_img}")
     public Resource getImage(@PathVariable("product_img") String fileName) throws MalformedURLException {
         return new UrlResource("file:" + PATH + fileName);
+    }
+
+    @GetMapping("/updateProduct")
+    public String storeUpdate(Long product_no, Model model) {
+        log.info("product_no : {}", product_no);
+        StoreProductVO storeProductVO = storeService.getProduct(product_no);
+        model.addAttribute( "product", storeProductVO);
+        return "store/updateProduct";
+    }
+
+    @PostMapping("/updateProduct")
+    public String storeUpdatePro(Long product_no , @ModelAttribute StoreProductVO storeProductVO) throws IOException {
+        log.info("product_no : {}", product_no);
+        storeService.updateStore(storeProductVO);
+        return "redirect:/productInfo?product_no=" + product_no;
+
+    }
+
+
+    // 글 삭제
+    @PostMapping("/deleteProduct")
+    public String deletePro(@RequestParam Long product_no, RedirectAttributes rttr) {
+        log.info("delete product_no : {}", product_no);
+        String productCategory = storeService.getProduct(product_no).getProduct_category();
+        rttr.addAttribute("productCategory", productCategory);
+        storeService.deleteProduct(product_no);
+        return "redirect:/store/{productCategory}";
     }
 
 

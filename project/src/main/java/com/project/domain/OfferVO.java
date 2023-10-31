@@ -16,6 +16,7 @@ public class OfferVO {
     private Long offer_salary;
     private String offer_content;
     private LocalDateTime regDate;
+    private String offer_address;
     private Long user_no;
 
 

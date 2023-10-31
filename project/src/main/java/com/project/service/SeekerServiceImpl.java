@@ -2,6 +2,7 @@ package com.project.service;
 
 import com.project.domain.OfferVO;
 import com.project.domain.SeekerVO;
+import com.project.dto.Pager;
 import com.project.repository.OfferMapper;
 import com.project.repository.SeekerMapper;
 import lombok.RequiredArgsConstructor;
@@ -21,25 +22,62 @@ public class SeekerServiceImpl implements SeekerService{
     public List<SeekerVO> findEditerSeeker() {
         return seekerMapper.findEditerSeeker();
     }
+    @Override
+    public Long findEditerSeekerCount(Pager pager) {
+        return seekerMapper.findEditerSeekerCount(pager);
+    }
+    @Override
+    public List<SeekerVO> getEditerSeekerListWithPaging(Pager pager) {
+        return seekerMapper.getEditerSeekerListWithPaging(pager);
+    }
+
 
     @Override
-    public List<SeekerVO> findThumbnailerSeeker() {
-        return seekerMapper.findThumbnailerSeeker();
+    public Long findThumbnailerSeekerCount(Pager pager) {
+        return seekerMapper.findThumbnailerSeekerCount(pager);
+    }
+    @Override
+    public List<SeekerVO> getThumbnailerSeekerListWithPaging(Pager pager) {
+        return seekerMapper.getThumbnailerSeekerListWithPaging(pager);
+    }
+
+
+
+    @Override
+    public Long findSdCharacterSeekerCount(Pager pager) {
+        return seekerMapper.findSdCharacterSeekerCount(pager);
+    }
+    @Override
+    public List<SeekerVO> getSdCharacterSeekerListWithPaging(Pager pager) {
+        return seekerMapper.getSdCharacterSeekerListWithPaging(pager);
+    }
+
+
+
+    @Override
+    public Long findVirtualSeekerCount(Pager pager) {
+        return seekerMapper.findVirtualSeekerCount(pager);
     }
 
     @Override
-    public List<SeekerVO> findSdCharacterSeeker() {
-        return seekerMapper.findSdCharacterSeeker();
+    public List<SeekerVO> getVirtualSeekerListWithPaging(Pager pager) {
+        return seekerMapper.getVirtualSeekerListWithPaging(pager);
+    }
+
+
+
+    @Override
+    public Long findCamaraManSeekerCount(Pager pager) {
+        return seekerMapper.findCamaraManSeekerCount(pager);
     }
 
     @Override
-    public List<SeekerVO> findVirtualSeeker() { return seekerMapper.findVirtualSeeker();
+    public List<SeekerVO> getCamaraManSeekerListWithPaging(Pager pager) {
+        return seekerMapper.getCamaraManSeekerListWithPaging(pager);
     }
 
-    @Override
-    public List<SeekerVO> findCamaraManSeeker() {
-        return seekerMapper.findCamaraManSeeker();
-    }
+
+
 
     @Override
     public SeekerVO getSeeker(Long seeker_no) {
@@ -53,7 +91,13 @@ public class SeekerServiceImpl implements SeekerService{
         seekerMapper.addSeekerForm(seekerVO);
     }
 
+    @Override
+    public void updateSeeker(SeekerVO seekerVO) {
+        seekerMapper.updateSeeker(seekerVO);
+    }
 
-
-
+    @Override
+    public void deleteSeeker(Long seeker_no) {
+        seekerMapper.deleteSeeker(seeker_no);
+    }
 }

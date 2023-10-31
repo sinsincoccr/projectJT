@@ -33,17 +33,31 @@
 
 
         <div class="container" style="border: 1px solid #ccc; height: 200px; background-color: #f0f8ff;">
-            <span th:text=" ${product.product_content}"></span>
+            <span th:utext=" ${product.product_content}"></span>
         </div>
-    </div>
+
 
     <br/>
-    <div class="container">
         <input type="button" id="apibtn" value="결제"  style="padding: 5px 10px; background: #2ba0db; color: #fff; font-size: 15px; text-decoration: none; text-transform: uppercase; border: none; cursor: pointer;">
 
 
+
+
+        <div style="text-align: right;">
+            <form th:action="@{/updateProduct}" th:object="${product}" method="post" enctype="multipart/form-data" style="display: inline-block;">
+                <input type="button" th:if="${session.loginMember != null and session.loginMember.user_state == 'master'}" value="수정" th:onclick="|location.href='/updateProduct?product_no=${product.product_no}'|" style="padding: 5px 10px; background: #2ba0db; color: #fff; font-size: 13px; text-decoration: none; text-transform: uppercase; border: none; cursor: pointer;">
+            </form>
+
+            <form th:action="@{/deleteProduct}" method="post" enctype="multipart/form-data" style="display: inline-block;">
+                <input type="hidden" name="product_no" th:value="${product.product_no}" />
+                <input type="submit" th:if="${session.loginMember != null and session.loginMember.user_state == 'master'}" value="삭제" style="padding: 5px 10px; background: #2ba0db; color: #fff; font-size: 13px; text-decoration: none; text-transform: uppercase; border: none; cursor: pointer;" />
+            </form>
+        </div>
+
+
     </div>
-    <script>
+
+<script>
     $(function() {
         $('#apibtn').click(function() {
             $.ajax({

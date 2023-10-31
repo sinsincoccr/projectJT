@@ -141,6 +141,9 @@
             <a th:if="${session.loginMember == null}" th:href="@{/}">로그인</a>
             <a th:if="${session.loginMember != null}" th:href="@{/logout}">로그아웃</a>
           </li>
+          <li>
+            <a th:if="${session.loginMember != null}" th:href="@{/myPage}">마이페이지</a>
+          </li>
 
 
 

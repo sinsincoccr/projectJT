@@ -54,109 +54,150 @@ public class MainPageController {
 
     //구인 페이지 이동
     @GetMapping("/jobOffer/editer")
-    public String editer(Model model, Model model2){
-        model.addAttribute("member", new MemberVO());
-        List<OfferVO> offerVOList = offerService.findEditer();
-        model2.addAttribute("offer", offerVOList);
+    public String editer(Pager pager ,Model model, Model model2){
+        List<OfferVO> offerVO = offerService.getEditorListWithPaging(pager);
+        log.info("pager : {}", pager);
+        model.addAttribute("pageDTO", new PageDTO(pager, offerService.findEditerCount(pager)));
+        model.addAttribute("offer", offerVO);
+
         return "jobOffer/editer";
     }
 
 
     @GetMapping("/jobOffer/thumbnailer")
-    public String thumbnailer(Model model, Model model2){
-        model.addAttribute("member", new MemberVO());
-        List<OfferVO> offerVOList = offerService.findThumbnailer();
-        model2.addAttribute("offer", offerVOList);
+    public String thumbnailer(Pager pager ,Model model, Model model2){
+        List<OfferVO> offerVO = offerService.getThumbnailerListWithPaging(pager);
+        log.info("pager : {}", pager);
+        model.addAttribute("pageDTO", new PageDTO(pager, offerService.findThumbnailerCount(pager)));
+        model.addAttribute("offer", offerVO);
+
+
         return "jobOffer/thumbnailer";
     }
 
     @GetMapping("/jobOffer/sdCharacter")
-    public String sdCharacter(Model model, Model model2){
-        model.addAttribute("member", new MemberVO());
-        List<OfferVO> offerVOList = offerService.findSdCharacter();
-        model2.addAttribute("offer", offerVOList);
+    public String sdCharacter(Pager pager ,Model model, Model model2){
+        List<OfferVO> offerVO = offerService.getSdCharacterListWithPaging(pager);
+        log.info("pager : {}", pager);
+        model.addAttribute("pageDTO", new PageDTO(pager, offerService.findSdCharacterCount(pager)));
+        model.addAttribute("offer", offerVO);
+
+
         return "jobOffer/sdCharacter";
     }
 
     @GetMapping("/jobOffer/virtual")
-    public String virtual(Model model, Model model2){
-        model.addAttribute("member", new MemberVO());
-        List<OfferVO> offerVOList = offerService.findVirtual();
-        model2.addAttribute("offer", offerVOList);
+    public String virtual(Pager pager ,Model model, Model model2){
+        List<OfferVO> offerVO = offerService.getVirtualListWithPaging(pager);
+        log.info("pager : {}", pager);
+        model.addAttribute("pageDTO", new PageDTO(pager, offerService.findVirtualCount(pager)));
+        model.addAttribute("offer", offerVO);
+
+
         return "jobOffer/virtual";
     }
 
     @GetMapping("/jobOffer/camaraMan")
-    public String camaraMan(Model model, Model model2){
-        model.addAttribute("member", new MemberVO());
-        List<OfferVO> seekerVOList = offerService.findCamaraMan();
-        model2.addAttribute("offer", seekerVOList);
+    public String camaraMan(Pager pager ,Model model, Model model2){
+        List<OfferVO> offerVO = offerService.getCamaraManListWithPaging(pager);
+        log.info("pager : {}", pager);
+        model.addAttribute("pageDTO", new PageDTO(pager, offerService.findCamaraManCount(pager)));
+        model.addAttribute("offer", offerVO);
         return "jobOffer/camaraMan";
     }
 
 
     //구인 페이지 이동
     @GetMapping("/jobSeeker/editerSeeker")
-    public String editerSeeker(Model model, Model model2){
-        model.addAttribute("member", new MemberVO());
-        List<SeekerVO> seekerVOList = seekerService.findEditerSeeker();
-        model2.addAttribute("seeker", seekerVOList);
+    public String editerSeeker(Pager pager ,Model model, Model model2){
+        //List<SeekerVO> seekerVO = seekerService.findEditerSeeker();
+        //model.addAttribute("member", new MemberVO());
+        //model2.addAttribute("seeker", seekerVO);
+        List<SeekerVO> seekerVO = seekerService.getEditerSeekerListWithPaging(pager);
+        log.info("pager : {}", pager);
+        model.addAttribute("pageDTO", new PageDTO(pager, seekerService.findEditerSeekerCount(pager)));
+        model.addAttribute("seeker", seekerVO);
+
         return "jobSeeker/editerSeeker";
     }
 
 
     @GetMapping("/jobSeeker/thumbnailerSeeker")
-    public String thumbnailerSeeker(Model model, Model model2){
-        model.addAttribute("member", new MemberVO());
-        List<SeekerVO> seekerVOList = seekerService.findThumbnailerSeeker();
-        model2.addAttribute("seeker", seekerVOList);
+    public String thumbnailerSeeker(Pager pager ,Model model, Model model2){
+        //model.addAttribute("member", new MemberVO());
+        //List<SeekerVO> seekerVOList = seekerService.findThumbnailerSeeker();
+        //model2.addAttribute("seeker", seekerVOList);
+        List<SeekerVO> seekerVO = seekerService.getThumbnailerSeekerListWithPaging(pager);
+        log.info("pager : {}", pager);
+        model.addAttribute("pageDTO", new PageDTO(pager, seekerService.findThumbnailerSeekerCount(pager)));
+        model.addAttribute("seeker", seekerVO);
         return "jobSeeker/thumbnailerSeeker";
     }
 
     @GetMapping("/jobSeeker/sdCharacterSeeker")
-    public String sdCharacterSeeker(Model model, Model model2){
-        model.addAttribute("member", new MemberVO());
-        List<SeekerVO> seekerVOList = seekerService.findSdCharacterSeeker();
-        model2.addAttribute("seeker", seekerVOList);
+    public String sdCharacterSeeker(Pager pager ,Model model, Model model2){
+        //model.addAttribute("member", new MemberVO());
+        //List<SeekerVO> seekerVOList = seekerService.findSdCharacterSeeker();
+        //model2.addAttribute("seeker", seekerVOList);
+        List<SeekerVO> seekerVO = seekerService.getSdCharacterSeekerListWithPaging(pager);
+        log.info("pager : {}", pager);
+        model.addAttribute("pageDTO", new PageDTO(pager, seekerService.findSdCharacterSeekerCount(pager)));
+        model.addAttribute("seeker", seekerVO);
         return "jobSeeker/sdCharacterSeeker";
     }
 
     @GetMapping("/jobSeeker/virtualSeeker")
-    public String virtualSeeker(Model model, Model model2){
-        model.addAttribute("member", new MemberVO());
-        List<SeekerVO> seekerVOList = seekerService.findVirtualSeeker();
-        model2.addAttribute("seeker", seekerVOList);
+    public String virtualSeeker(Pager pager ,Model model, Model model2){
+        //model.addAttribute("member", new MemberVO());
+        //List<SeekerVO> seekerVOList = seekerService.findVirtualSeeker();
+        //model2.addAttribute("seeker", seekerVOList);
+        List<SeekerVO> seekerVO = seekerService.getVirtualSeekerListWithPaging(pager);
+        log.info("pager : {}", pager);
+        model.addAttribute("pageDTO", new PageDTO(pager, seekerService.findVirtualSeekerCount(pager)));
+        model.addAttribute("seeker", seekerVO);
         return "jobSeeker/virtualSeeker";
     }
 
     @GetMapping("/jobSeeker/camaraManSeeker")
-    public String camaraManSeeker(Model model, Model model2){
-        model.addAttribute("member", new MemberVO());
-        List<SeekerVO> seekerVOList = seekerService.findCamaraManSeeker();
-        model2.addAttribute("seeker", seekerVOList);
+    public String camaraManSeeker(Pager pager ,Model model, Model model2){
+        //model.addAttribute("member", new MemberVO());
+        //List<SeekerVO> seekerVOList = seekerService.findCamaraManSeeker();
+        //model2.addAttribute("seeker", seekerVOList);
+        List<SeekerVO> seekerVO = seekerService.getCamaraManSeekerListWithPaging(pager);
+        log.info("pager : {}", pager);
+        model.addAttribute("pageDTO", new PageDTO(pager, seekerService.findCamaraManSeekerCount(pager)));
+        model.addAttribute("seeker", seekerVO);
         return "jobSeeker/camaraManSeeker";
     }
 
     // 스토어 바로가기
     @GetMapping("/store/premierProStore")
-    public String premierProStore(Model model){
-        List<StoreProductVO> storeProductVO = storeService.findPremierProStore();
-        model.addAttribute("product", storeProductVO);
+    public String premierProStore(Pager pager,Model model){
+        //List<StoreProductVO> storeProductVO = storeService.findPremierProStore();
+        //model.addAttribute("product", storeProductVO);
+        List<StoreProductVO> storeProductVO = storeService.getPremierProStoreListWithPaging(pager);
+        log.info("pager : {}", pager);
+        model.addAttribute("pageDTO", new PageDTO(pager, storeService.findPremierProStoreCount(pager)));
+        model.addAttribute("storeProduct", storeProductVO);
         return "store/premierProStore";
     }
 
 
     @GetMapping("/store/finalCutStore")
-    public String finalCutStore(Model model){
-        List<StoreProductVO> storeProductVO = storeService.findFinalCutStore();
-        model.addAttribute("product", storeProductVO);
+    public String finalCutStore(Pager pager,Model model){
+        List<StoreProductVO> storeProductVO = storeService.getFinalCutStoreListWithPaging(pager);
+        log.info("pager : {}", pager);
+        model.addAttribute("pageDTO", new PageDTO(pager, storeService.findFinalCutStoreCount(pager)));
+        model.addAttribute("storeProduct", storeProductVO);
         return "store/finalCutStore";
     }
 
     @GetMapping("/store/imageStore")
-    public String imageStore(Model model){
-        List<StoreProductVO> storeProductVO = storeService.findImageStore();
-        model.addAttribute("product", storeProductVO);
+    public String imageStore(Pager pager,Model model){
+        List<StoreProductVO> storeProductVO = storeService.getImageStoreListWithPaging(pager);
+        log.info("pager : {}", pager);
+        model.addAttribute("pageDTO", new PageDTO(pager, storeService.findImageStoreCount(pager)));
+        model.addAttribute("storeProduct", storeProductVO);
         return "store/imageStore";
     }
 
@@ -173,7 +214,7 @@ public class MainPageController {
         log.info("pager : {}", pager);
         model.addAttribute("pageDTO", new PageDTO(pager, boardService.getFreeBoard(pager)));
         model.addAttribute("board", boardVO);
-        return "/board/freeBoard";
+        return "/board/freeboard";
     }
 
 

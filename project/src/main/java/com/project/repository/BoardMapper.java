@@ -2,6 +2,7 @@ package com.project.repository;
 
 
 import com.project.domain.BoardVO;
+import com.project.domain.OfferVO;
 import com.project.dto.Pager;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -30,4 +31,11 @@ public interface BoardMapper {
 
     // 글 한개 조회
     BoardVO getBoard(Long comm_no);
+
+    void updateView(Long comm_no);
+
+    void updateBoard(BoardVO boardVO);
+
+    void deleteBoard(Long comm_no);
+
 }

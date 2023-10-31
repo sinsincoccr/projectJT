@@ -45,6 +45,7 @@
                         <th>No.</th>
                         <th>Title</th>
                         <th>Writer</th>
+                        <th>Views</th>
                         <th>Date</th>
                     </tr>
                     </thead>
@@ -57,6 +58,7 @@
                             <a th:href="@{/boardInfo(comm_no=${board.comm_no})}" th:text="${board.comm_title}">글제목</a>
                         </td>
                         <td th:text="${board.user_no}">작성자</td>
+                        <td th:text="${board.comm_views}">조회수</td>
                         <td th:text="${#temporals.format(board.regDate, 'yyyy-MM-dd HH:mm')}">작성일</td>
                     </tr>
                     </tbody>

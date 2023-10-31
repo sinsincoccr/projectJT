@@ -2,7 +2,10 @@ package com.project.service;
 
 
 import com.project.domain.FileVO;
+import com.project.domain.OfferVO;
+import com.project.domain.SeekerVO;
 import com.project.domain.StoreProductVO;
+import com.project.dto.Pager;
 import com.project.repository.StoreMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,18 +23,33 @@ public class StoreServiceImpl implements StoreService{
     private final StoreMapper storeMapper;
 
     @Override
-    public List<StoreProductVO> findPremierProStore() {
-        return storeMapper.findPremierProStore();
+    public Long findPremierProStoreCount(Pager pager) {
+        return storeMapper.findPremierProStoreCount(pager);
+    }
+    @Override
+    public List<StoreProductVO> getPremierProStoreListWithPaging(Pager pager) {
+        return storeMapper.getPremierProStoreListWithPaging(pager);
     }
 
-    @Override
-    public List<StoreProductVO> findFinalCutStore() {
-        return storeMapper.findFinalCutStore();
-    }
 
     @Override
-    public List<StoreProductVO> findImageStore() {
-        return storeMapper.findImageStore();
+    public Long findFinalCutStoreCount(Pager pager) {
+        return storeMapper.findFinalCutStoreCount(pager);
+    }
+    @Override
+    public List<StoreProductVO> getFinalCutStoreListWithPaging(Pager pager) {
+        return storeMapper.getFinalCutStoreListWithPaging(pager);
+    }
+
+
+
+    @Override
+    public Long findImageStoreCount(Pager pager) {
+        return storeMapper.findImageStoreCount(pager);
+    }
+    @Override
+    public List<StoreProductVO> getImageStoreListWithPaging(Pager pager) {
+        return storeMapper.getImageStoreListWithPaging(pager);
     }
 
     @Override
@@ -55,4 +73,23 @@ public class StoreServiceImpl implements StoreService{
         storeProductVO.setProduct_status(1); // 판매중
         storeMapper.addProductForm(storeProductVO);
     }
+
+    @Override
+    public void updateStore(StoreProductVO storeProductVO) throws IOException {
+        String savedFileName = fileUpload.saveFile(storeProductVO.getProduct_file());
+        storeProductVO.setProduct_img(savedFileName);
+        storeProductVO.setProduct_status(1); // 판매중
+        storeMapper.updateStore(storeProductVO);
+
+    }
+
+    @Override
+    public void deleteProduct(Long product_no) {
+        storeMapper.deleteProduct(product_no);
+    }
+
+
+
+
+
 }

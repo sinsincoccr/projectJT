@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- jQuery 로드 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- SmartEditor2 텍스트편집기 -->
+    <script src="/libs/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+
+
+    <th:block th:insert="~{assist/header :: head_header}" />
+</head>
+<body>
+<th:block th:insert="~{assist/header :: contents}"/>
+
+<h1>구직 글작성</h1>
+
+<form th:action th:object="${seeker}" method="post" >
+    <div class="container">
+        <div class="mb-3">
+            <label for="categorySelect" class="form-label">카테고리</label>
+            <select th:field="*{seeker_category}" class="form-select" id="categorySelect">
+                <option value="editerSeeker">편집자</option>
+                <option value="thumbnailerSeeker">썸네일러</option>
+                <option value="sdCharacterSeeker">SD캐릭터</option>
+                <option value="virtualSeeker">버츄얼</option>
+                <option value="camaraManSeeker">촬영팀</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="titleInput" class="form-label">제목</label>
+            <input th:field="*{seeker_title}" class="form-control" id="titleInput"/>
+        </div>
+        <label for="careerInput" class="form-label">경력</label>
+        <input th:field="*{seeker_career}" class="form-control" id="careerInput"/>
+        <div class="mb-3">
+            <label for="toolsInput" class="form-label">사용 툴</label>
+            <input th:field="*{seeker_tools}" class="form-control" id="toolsInput"/>
+        </div>
+        <div class="mb-3">
+            <label for="typeInput" class="form-label">고용형태</label>
+            <input th:field="*{seeker_type}" class="form-control" id="typeInput"/>
+        </div>
+        <div class="mb-3">
+            <label for="caseInput" class="form-label">건당 가격</label>
+            <input th:field="*{seeker_case}" class="form-control" id="caseInput"/>
+        </div>
+        <div class="mb-3">
+            <label for="minInput" class="form-label">분당 가격</label>
+            <input th:field="*{seeker_min}" class="form-control" id="minInput"/>
+        </div>
+
+
+        <!-- 스마트 에디터 플레이스홀더 -->
+        <div id="smarteditor">
+            <textarea id="seeker_portofolio" name="seeker_portofolio" rows="10" cols="100" style="width: 100%;"></textarea>
+        </div>
+        <input type="submit" value="저장" th:onclick= "submitPost()">
+        <input type="button" value="취소" th:onclick="|location.href='@{/mainPage}'|">
+
+
+    </div>
+    <br/><br/><br/><br/>
+</form>
+
+<<script>
+    let oEditors = []
+
+    const smartEditor = function(){
+        console.log("네이버 스마트 에디터")
+        nhn.husky.EZCreator.createInIFrame({
+            oAppRef: oEditors,
+            elPlaceHolder: "offer_content",
+            sSkinURI: "/libs/smarteditor/SmartEditor2Skin.html",
+            fCreator: "createSEditor2"
+        })
+    }
+
+    $(document).ready(function(){
+        smartEditor()
+    })
+
+    const submitPost = function(){
+        oEditors.getById["offer_content"].exec("UPDATE_CONTENTS_FIELD", []);
+        let content = oEditors.getById["offer_content"].getIR();  // 수정된 내용을 가져옴
+
+        if(content == ""){
+            alert("내용을 입력해주세요")
+            oEditors.getById["offer_content"].exec("FOCUS")
+            return
+        } else {
+            console.log(content)
+            offer_content = content
+            console.log(offer_content)
+        }
+    }
+</script>
+
+</body>
+</html>

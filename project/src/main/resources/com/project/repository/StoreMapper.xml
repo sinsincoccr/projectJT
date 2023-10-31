@@ -9,13 +9,73 @@
         select * from store_product where product_category = 'premierProStore' ORDER BY product_no ASC
     </select>
 
+    <select id="findPremierProStoreCount" resultType="long">
+        select count(*) from store_product where product_category = 'premierProStore' ORDER BY product_no ASC
+
+    </select>
+
+    <select id="getPremierProStoreListWithPaging" resultType="StoreProductVO">
+        <![CDATA[
+    select r, B.* from
+        (select rownum r, A.* from
+            (select * from store_product
+            where product_category = 'premierProStore'
+
+            ) A
+            where rownum <= (#{pageNum} * #{boardSize})
+        ) B
+    where r > (#{pageNum} - 1) * #{boardSize}
+    ]]>
+    </select>
+
+
     <select id="findFinalCutStore" resultType="StoreProductVO">
         select * from store_product where product_category = 'finalCutStore' ORDER BY product_no ASC
     </select>
 
+    <select id="findFinalCutStoreCount" resultType="long">
+        select count(*) from store_product where product_category = 'finalCutStore' ORDER BY product_no ASC
+
+    </select>
+
+    <select id="getFinalCutStoreListWithPaging" resultType="StoreProductVO">
+        <![CDATA[
+    select r, B.* from
+        (select rownum r, A.* from
+            (select * from store_product
+            where product_category = 'finalCutStore'
+
+            ) A
+            where rownum <= (#{pageNum} * #{boardSize})
+        ) B
+    where r > (#{pageNum} - 1) * #{boardSize}
+    ]]>
+    </select>
+
+
     <select id="findImageStore" resultType="StoreProductVO">
         select * from store_product where product_category = 'imageStore' ORDER BY product_no ASC
     </select>
+
+    <select id="findImageStoreCount" resultType="long">
+        select count(*) from store_product where product_category = 'imageStore' ORDER BY product_no ASC
+
+    </select>
+
+    <select id="getImageStoreListWithPaging" resultType="StoreProductVO">
+        <![CDATA[
+    select r, B.* from
+        (select rownum r, A.* from
+            (select * from store_product
+            where product_category = 'imageStore'
+
+            ) A
+            where rownum <= (#{pageNum} * #{boardSize})
+        ) B
+    where r > (#{pageNum} - 1) * #{boardSize}
+    ]]>
+    </select>
+
 
     <select id="findPowerBannerStore" resultType="StoreProductVO">
         select * from store_product where product_category = 'powerBanner' ORDER BY product_no ASC
@@ -31,4 +91,27 @@
         insert into store_product (product_no, product_category, product_img, product_title, product_content, product_price, product_status)
         values (store_product_seq.nextval, #{product_category}, #{product_img}, #{product_title}, #{product_content}, #{product_price}, #{product_status})
     </insert>
+
+    <update id="updateStore">
+        UPDATE store_product
+        SET
+        product_category=#{product_category},
+        product_img=#{product_img},
+        product_title=#{product_title},
+        product_content=#{product_content},
+        product_price=#{product_price}
+        WHERE product_no=#{product_no}
+    </update>
+
+    <delete id="deleteProduct">
+        delete from store_product
+        where product_no = #{product_no}
+    </delete>
+
+
+
+
+
+
+
 </mapper>
