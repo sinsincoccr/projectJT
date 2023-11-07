@@ -16,24 +16,27 @@
 - Framework & platform : Mybatis, BootStrap, Jquery, Jackson, Node JS, HTML
 - language : JAVA, JS, SQL
 - tools : inteliJ, Oracle SQL Developer, Docker
-  
+
   ![1  개발환경](https://github.com/sinsincoccr/projectJT/assets/145324925/94a1851a-5359-4eb0-9308-ba3319cd445e)
+
+
 
 
 
 ### 3. 주요기능
 
 - 메인페이지
+---
 1. 슬라이드 이벤트 페이지
 2. 대표 글 노출
 3. 최신 커뮤니티 글 노출
-   
+
 ![image](https://github.com/sinsincoccr/projectJT/assets/145324925/bc8119f3-3e99-4015-a0ab-9948a1e3b51e)
 
 
 - 회원가입
-  1.Ajax 중복 아이디 확인
-  2. spring Boot 이메일 기능을 활용한 인증
+1. Ajax 중복 아이디 확인
+2. spring Boot 이메일 기능을 활용한 인증
 
 ![2  회원가입](https://github.com/sinsincoccr/projectJT/assets/145324925/266da645-f249-4cea-a932-26f8cb27f8bb)
 
