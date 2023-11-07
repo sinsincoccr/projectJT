@@ -123,7 +123,7 @@
 
     </select>
 
-    <select id="getCamaraManSeekerListWithPaging" resultType="OfferVO">
+    <select id="getCamaraManSeekerListWithPaging" resultType="SeekerVO">
         <![CDATA[
     select r, B.* from
         (select rownum r, A.* from

@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Title</title>
- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     <th:block th:insert="~{assist/header :: head_header}" />
 </head>
@@ -21,7 +23,7 @@
 
     <div class="row">
         <div class="col">
-            <span th:text="${seeker.seeker_title} " style="font-size: 30px; font-family: 'Arial', sans-serif;">제목</span><br/>
+            <span th:text="${seeker.seeker_title} " style="font-size: 30px; font-family: 'Arial', sans-serif; font-weight: bold;">">제목</span><br/>
             <span th:text="'경력: ' + ${seeker.seeker_career + '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'}" style="font-size: 15px; font-family: 'Arial', sans-serif;"></span>
             <span th:text="'고용형태: ' + ${seeker.seeker_type}" style="font-size: 15px; font-family: 'Arial', sans-serif;"></span><br/>
 
@@ -39,7 +41,7 @@
 
 
 
-    <div class="container" style="border: 1px solid #ccc; height: 200px; background-color: #f0f8ff;">
+    <div class="container" style="border: 1px solid #ccc; height: 200px; background-color: #f0f8ff; line-height: 1.2; overflow-y: scroll;">
         <span th:utext=" ${seeker.seeker_portofolio}"></span>
     </div>
 

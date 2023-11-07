@@ -24,10 +24,10 @@
         <div class="col-2">
             <div style="border: 1px solid #ccc; padding: 10px;">
                 <a>커뮤니티</a><br/>
-                <a href="/board/freeBoard">자유게시판</a><br/>
-                <a href="/board/feedbackBoard">피드백</a><br/>
-                <a href="/board/revenueBoard">수익공개</a><br/>
-                <a href="/board/taxBoard">세금Q&A</a>
+                <a href="/board/freeBoard" style="text-decoration: none;">자유게시판</a><br/>
+                <a href="/board/feedbackBoard" style="text-decoration: none;">피드백</a><br/>
+                <a href="/board/revenueBoard" style="text-decoration: none;">수익공개</a><br/>
+                <a href="/board/taxBoard" style="text-decoration: none;">세금Q&A</a>
             </div>
         </div>
 
@@ -52,10 +52,10 @@
                     <tbody>
                     <tr th:each="board : ${board}">
                         <td>
-                            <a th:href="@{/boardInfo(comm_no=${board.comm_no})}" th:text="${board.comm_no}">글번호</a>
+                            <a th:text="${board.comm_no}">글번호</a>
                         </td>
                         <td>
-                            <a th:href="@{/boardInfo(comm_no=${board.comm_no})}" th:text="${board.comm_title}">글제목</a>
+                            <a th:href="@{/boardInfo(comm_no=${board.comm_no})}" th:text="${board.comm_title}" style="text-decoration: none;" >글제목</a>
                         </td>
                         <td th:text="${board.user_no}">작성자</td>
                         <td th:text="${board.comm_views}">조회수</td>

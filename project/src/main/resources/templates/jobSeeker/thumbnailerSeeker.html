@@ -41,9 +41,9 @@
 <div class="container">
     <div class="row">
         <div th:each="seeker : ${seeker}" class="col-md-3">
-            <a th:href="@{/seekerInfo(seeker_no=${seeker.seeker_no})}">
-                <div class="card" style="border: 1px solid #ccc;">
-                    <h4 class="card-header text-uppercase m-0" th:text="${'닉네임: ' + seeker.user_name}"></h4>
+            <a th:href="@{/seekerInfo(seeker_no=${seeker.seeker_no})}" style="text-decoration: none;">>
+                <div class="card text-white bg-info mb-3" style="max-width: 20rem;">
+                    <h4 class="card-header text-uppercase m-0" th:text="${'닉네임: ' + seeker.user_name}" style="text-decoration: none;"></h4>
                     <div class="card-body">
                         <p class="card-text" th:text="${seeker.seeker_title}"></p>
                         <p class="card-text" th:text="${'건당 ' + seeker.seeker_case + '원'}"></p>
@@ -53,6 +53,9 @@
         </div>
     </div>
 </div>
+
+
+
 <div class="row">
     <div class="col-sm-12 col-md-7">
         <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">

@@ -51,13 +51,13 @@ public class SeekerController {
 
     //쇼 정보 확인
     @GetMapping("/seekerInfo")
-    public String offerInfo(Long seeker_no , Model model){
+    public String seekerInfo(Long seeker_no , Model model){
         log.info("seeker_no : {}", seeker_no);
         SeekerVO seekerVO = seekerService.getSeeker(seeker_no);
         MemberVO memberVO = memberService.getMember(Long.valueOf(seekerVO.getUser_no()));
         model.addAttribute( "seeker", seekerVO);
         model.addAttribute( "user", memberVO);
-        return "jobSeeker/seekerInfo";
+        return "jobSeeker/SeekerInfo";
     }
 
     @GetMapping("/updateSeeker")

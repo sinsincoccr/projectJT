@@ -17,13 +17,13 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <span th:text="${offer.offer_company}" style="font-size: 30px; font-family: 'Arial', sans-serif;">회사이름</span></br>
+            <span th:text="${offer.offer_company}" style="font-size: 30px; font-family: 'Arial', sans-serif; font-weight: bold;">회사이름</span></br>
             <span th:text="${offer.offer_title} " style="font-size: 24px; font-family: 'Arial', sans-serif;">제목</span><br/>
-            <span th:text="'경력: ' + ${offer.offer_career + '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'}" style="font-size: 15px; font-family: 'Arial', sans-serif;"></span>
-            <span th:text="'고용형태: ' + ${offer.offer_type}" style="font-size: 15px; font-family: 'Arial', sans-serif;"></span><br/>
+            <span th:text="'경력: ' + ${offer.offer_career + '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'}" style="font-size: 15px; font-family: 'Arial', sans-serif; color: gray;"></span>
+            <span th:text="'고용형태: ' + ${offer.offer_type}" style="font-size: 15px; font-family: 'Arial', sans-serif; color: gray;"></span><br/>
 
-            <span th:text="'사용툴: ' + ${offer.offer_tools}+ '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'" style="font-size: 15px; font-family: 'Arial', sans-serif;"></span>
-            <span th:text="'급여: ' + ${offer.offer_salary} + '만원'" style="font-size: 15px; font-family: 'Arial', sans-serif;"></span>
+            <span th:text="'사용툴: ' + ${offer.offer_tools}+ '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'" style="font-size: 15px; font-family: 'Arial', sans-serif; color: gray;"></span>
+            <span th:text="'급여: ' + ${offer.offer_salary} + '만원'" style="font-size: 15px; font-family: 'Arial', sans-serif; color: gray;"></span>
         </div>
         <div class="col-4">
             <br/><br/>
@@ -35,7 +35,7 @@
 
 
 
-    <div class="container" style="border: 1px solid #ccc; height: 200px; background-color: #f0f8ff; line-height: 1.2;">
+    <div class="container" style="border: 1px solid #ccc; height: 200px; background-color: #f0f8ff; overflow-y: scroll; margin-top: 0; margin-bottom: 0;">
         <span th:utext="${offer.offer_content}"></span>
     </div>
 
@@ -54,8 +54,8 @@
     </div>
 
 
-
-    <div id="map" style="width: 500px; height: 400px;" ></div>
+    <a>[회사 위치] </a>
+    <div id="map" style="width: 1100px; height: 400px;" ></div>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d23c2fa3aa909f6fa1938aca04bb3231&libraries=services"></script>
     <br/><br/>
     <script th:inline="javascript">

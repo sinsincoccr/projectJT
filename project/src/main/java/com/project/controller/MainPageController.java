@@ -214,7 +214,7 @@ public class MainPageController {
         log.info("pager : {}", pager);
         model.addAttribute("pageDTO", new PageDTO(pager, boardService.getFreeBoard(pager)));
         model.addAttribute("board", boardVO);
-        return "/board/freeboard";
+        return "board/freeBoard";
     }
 
 
@@ -226,7 +226,7 @@ public class MainPageController {
         model.addAttribute("board", boardService.getFeedbackBoardListWithPaging(pager));
 
 
-        return "/board/feedbackBoard";
+        return "board/feedbackBoard";
     }
 
     @GetMapping("/board/revenueBoard")
@@ -237,7 +237,7 @@ public class MainPageController {
         model.addAttribute("board", boardVO);
 
 
-        return "/board/revenueBoard";
+        return "board/revenueBoard";
     }
 
     @GetMapping("/board/taxBoard")
@@ -248,7 +248,7 @@ public class MainPageController {
         model.addAttribute("board", boardVO);
 
 
-        return "/board/taxBoard";
+        return "board/taxBoard";
     }
 
 }

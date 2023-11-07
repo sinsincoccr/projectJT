@@ -38,7 +38,7 @@
 <div class="container">
     <div class="row">
         <div th:each="storeProduct : ${storeProduct}" class="col-md-3">
-            <a th:href="@{/productInfo(product_no=${storeProduct.product_no})}">
+            <a th:href="@{/productInfo(product_no=${storeProduct.product_no})}" style="text-decoration: none;">
                 <div class="card" style="border: 1px solid #ccc;">
                     <!-- 이미지를 표시하는 <img> 태그를 사용 -->
                     <img class="card-img-top" img th:src="@{|/upload/${storeProduct.product_img}|}" width="200px"  height="100px"/>
