@@ -9,18 +9,19 @@
 
 ### 2. 개발환경  
 - OS : Window 10  
-- Serever : Tomcat 9.0v  
-- DBMS : oracle 19.3  
-- Framework & platform : Mybatis, BootStrap, Jquery, Maven, Jackson   
-- language : JAVA, JS, SQL, HTML  
-- tools : inteliJ, Oracle SQL Developer, Android Studio  
+- Serever : Apache Tomcat
+-           AWS EC2
+- DBMS : Oracle 11.g
+- Framework & platform : Mybatis, BootStrap, Jquery, Jackson, Node JS, HTML
+- language : JAVA, JS, SQL
+- tools : inteliJ, Oracle SQL Developer, Docker
 
 ### 3. 주요기능
 - API를 이용한 카카오페이 결제 시스템 (ajax 활용)
 - 네이버 스마트 에디터를 활용한 create
 
 ### 3. ERD
-![image](https://github.com/sinsincoccr/projectJT/assets/145324925/596b1846-34c3-4557-8769-7a41eeb7b49d)
+![1  개발환경](https://github.com/sinsincoccr/projectJT/assets/145324925/94a1851a-5359-4eb0-9308-ba3319cd445e)
 
 ### 4. 프로젝트 문제점
 - 스마트에디터 출력에 html코드가 같이 딸려 나옴
