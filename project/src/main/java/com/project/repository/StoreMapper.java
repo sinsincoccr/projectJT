@@ -39,6 +39,4 @@ public interface StoreMapper {
 
     void deleteProduct(Long product_no);
 
-
-
 }

@@ -1,6 +1,5 @@
 package com.project.controller;
 
-
 import com.project.domain.MemberVO;
 import com.project.domain.OfferVO;
 import com.project.domain.StoreProductVO;
@@ -34,6 +33,7 @@ public class StoreController {
 
     @Value("${file.dir}")
     private String PATH;
+
     // 글작성 폼
     @GetMapping("/writeProduct")
     public String addProduct(@ModelAttribute StoreProductVO storeProductVO, Model model) {
@@ -51,10 +51,7 @@ public class StoreController {
         // 저장
         storeService.addProductForm(storeProductVO);
         return "redirect:/store/{productCategory}";
-
-
     }
-
 
     @GetMapping("/productInfo")
     public String offerInfo(Long product_no , Model model, HttpSession session){
@@ -84,11 +81,8 @@ public class StoreController {
         log.info("product_no : {}", product_no);
         storeService.updateStore(storeProductVO);
         return "redirect:/productInfo?product_no=" + product_no;
-
     }
 
-
-    // 글 삭제
     @PostMapping("/deleteProduct")
     public String deletePro(@RequestParam Long product_no, RedirectAttributes rttr) {
         log.info("delete product_no : {}", product_no);
@@ -97,7 +91,4 @@ public class StoreController {
         storeService.deleteProduct(product_no);
         return "redirect:/store/{productCategory}";
     }
-
-
-
 }

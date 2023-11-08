@@ -31,7 +31,6 @@
 
 
 
-
     <select id="findThumbnailer" resultType="OfferVO">
         select * from job_offer where offer_category = 'thumbnailer' ORDER BY offer_no ASC
     </select>

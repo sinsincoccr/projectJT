@@ -19,5 +19,4 @@ public interface MemberMapper {
     public int idCheck(String id);
 
     void modifyId(MemberVO member);
-
 }

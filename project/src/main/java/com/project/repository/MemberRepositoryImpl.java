@@ -24,5 +24,4 @@ public class MemberRepositoryImpl  implements MemberRepository{
     public MemberVO findById(String user_id) {
         return memberMapper.findById(user_id);
     }
-
 }

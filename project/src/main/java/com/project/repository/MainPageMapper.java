@@ -15,5 +15,4 @@ public interface MainPageMapper {
     int virtual(MemberVO member);
 
     int camaraMan(MemberVO member);
-
 }

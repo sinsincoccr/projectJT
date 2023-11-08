@@ -44,9 +44,6 @@ public class PageDTO {
         log.info("prev = {}", prev);
         log.info("next = {}", next);
         log.info("pageNumList = {}", pageNumList);
-
     }
-
-
 
 }

@@ -7,7 +7,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 @Data
 @Slf4j
 public class Pager {
-
     private int pageNum;  //
     private int boardSize; // 한페이지당 보여줄 글의 개수
     private int pageSize;  // 페이지 번호 띄워줄 개수
@@ -42,8 +41,5 @@ public class Pager {
         log.info("pager uri queryString : {}", builder.toUriString());
         return builder.toUriString();
     }
-
-
-
 
 }

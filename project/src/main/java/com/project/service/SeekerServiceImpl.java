@@ -15,7 +15,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class SeekerServiceImpl implements SeekerService{
-
     private final SeekerMapper seekerMapper;
 
     @Override
@@ -42,7 +41,6 @@ public class SeekerServiceImpl implements SeekerService{
     }
 
 
-
     @Override
     public Long findSdCharacterSeekerCount(Pager pager) {
         return seekerMapper.findSdCharacterSeekerCount(pager);
@@ -51,7 +49,6 @@ public class SeekerServiceImpl implements SeekerService{
     public List<SeekerVO> getSdCharacterSeekerListWithPaging(Pager pager) {
         return seekerMapper.getSdCharacterSeekerListWithPaging(pager);
     }
-
 
 
     @Override

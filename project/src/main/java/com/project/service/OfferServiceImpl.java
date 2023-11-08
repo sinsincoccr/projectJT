@@ -15,7 +15,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class OfferServiceImpl implements OfferService {
-
     private final OfferMapper offerMapper;
 
     @Override
@@ -49,9 +48,6 @@ public class OfferServiceImpl implements OfferService {
         return offerMapper.getThumbnailerListWithPaging(pager);
     }
 
-
-
-
     @Override
     public List<OfferVO> findSdCharacter() {
         return offerMapper.findSdCharacter();
@@ -65,8 +61,6 @@ public class OfferServiceImpl implements OfferService {
     public List<OfferVO> getSdCharacterListWithPaging(Pager pager) {
         return offerMapper.getSdCharacterListWithPaging(pager);
     }
-
-
 
     @Override
     public List<OfferVO> findVirtual() {
@@ -85,8 +79,6 @@ public class OfferServiceImpl implements OfferService {
 
 
 
-
-
     @Override
     public List<OfferVO> findCamaraMan() {
         return offerMapper.findCamaraMan();
@@ -101,8 +93,6 @@ public class OfferServiceImpl implements OfferService {
     public List<OfferVO> getCamaraManListWithPaging(Pager pager) {
         return offerMapper.getCamaraManListWithPaging(pager);
     }
-
-
 
 
     @Override

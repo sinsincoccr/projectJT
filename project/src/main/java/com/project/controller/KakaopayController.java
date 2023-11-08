@@ -13,13 +13,11 @@ import org.springframework.web.client.RestTemplate;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestClientException;
 
 import javax.servlet.http.HttpSession;
-
 
 @Slf4j
 @Controller
@@ -28,11 +26,9 @@ public class KakaopayController {
 
     private KakaoPayReadyVO kakaoPayReadyVO;
     private KakaoPayApprovalVO kakaoPayApprovalVO;
-    private StoreProductVO storeProductVO;
     private final KakaoService kakaoService;
     private final StoreService storeService;
     private static final String HOST = "https://kapi.kakao.com";
-
 
     @RequestMapping("/kakaopayReady")
     @ResponseBody
@@ -41,8 +37,6 @@ public class KakaopayController {
         Long product_no = (Long) session.getAttribute("product_no");
         log.info("product_no : {}", product_no);
         log.info("user_no : {}", member.getUser_no());
-
-
 
         // 카카오 폼 저장
         kakaoService.addKakaopayForm(member.getUser_no(), product_no);
@@ -90,11 +84,9 @@ public class KakaopayController {
         log.info("kakaoPaySuccess GET request");
         log.info("kakaoPaySuccess pg_token : " + pg_token);
 
-
         model.addAttribute("info", kakaoPayInfo(pg_token, session));
         return "store/kakaoPaySuccess";
     }
-
 
     public KakaoPayApprovalVO kakaoPayInfo(String pg_token, HttpSession session) {
         log.info("KakaoPayInfoVO............................................");
@@ -104,13 +96,11 @@ public class KakaopayController {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        // 서버로 요청할 Header
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", "KakaoAK " + "a61844a7345a6312ea7adbc0755fdf23");
         headers.add("Accept", MediaType.APPLICATION_JSON_UTF8_VALUE);
         headers.add("Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE + ";charset=UTF-8");
 
-        // 서버로 요청할 Body
         MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
         params.add("cid", "TC0ONETIME");
         params.add("tid", kakaoPayReadyVO.getTid());
@@ -124,6 +114,7 @@ public class KakaopayController {
         try {
             kakaoPayApprovalVO = restTemplate.postForObject(new URI(HOST + "/v1/payment/approve"), body, KakaoPayApprovalVO.class);
             log.info("kakaoPayApprovalVO :" + kakaoPayApprovalVO);
+
             // DB 등록처리
             log.info("폼 저장 파람 :" + params);
             log.info("폼 저장 제품번호용 :" + storeProductVO);
@@ -131,20 +122,11 @@ public class KakaopayController {
             return kakaoPayApprovalVO;
 
         } catch (RestClientException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (URISyntaxException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
         return null;
     }
-
-
-
 }
-
-
-
-

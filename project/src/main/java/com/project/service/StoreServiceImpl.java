@@ -42,7 +42,6 @@ public class StoreServiceImpl implements StoreService{
     }
 
 
-
     @Override
     public Long findImageStoreCount(Pager pager) {
         return storeMapper.findImageStoreCount(pager);
@@ -87,9 +86,6 @@ public class StoreServiceImpl implements StoreService{
     public void deleteProduct(Long product_no) {
         storeMapper.deleteProduct(product_no);
     }
-
-
-
 
 
 }

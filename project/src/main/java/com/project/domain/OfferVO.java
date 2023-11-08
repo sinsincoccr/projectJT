@@ -19,8 +19,4 @@ public class OfferVO {
     private String offer_address;
     private Long user_no;
 
-
-
-
-
 }

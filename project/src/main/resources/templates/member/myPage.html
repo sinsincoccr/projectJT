@@ -9,8 +9,6 @@
 <th:block th:insert="~{assist/header :: contents}"/>
 
 <h1>My Page</h1>
-
-<!-- Display user information -->
 <div th:if="${member != null}">
     <p>User ID: <span th:text="${member.user_id}"></span></p>
     <p>User Name: <span th:text="${member.user_name}"></span></p>
@@ -18,7 +16,6 @@
     <p>Phone Number: <span th:text="${member.user_tel}"></span></p>
 </div>
 
-<!-- If member is null (not logged in) -->
 <div th:unless="${member != null}">
     <p>Please log in to view your page.</p>
 </div>

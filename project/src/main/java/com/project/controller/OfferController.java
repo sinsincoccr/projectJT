@@ -1,6 +1,5 @@
 package com.project.controller;
 
-
 import com.project.domain.MemberVO;
 import com.project.domain.OfferVO;
 import com.project.service.MemberService;
@@ -24,7 +23,7 @@ public class OfferController {
     // 글작성 폼
     @GetMapping("/writeOffer")
     public String addOffer(@ModelAttribute OfferVO offerVO, Model model) {
-        model.addAttribute( "offer", offerVO);
+        model.addAttribute("offer", offerVO);
         return "jobOffer/writeOffer";
     }
 
@@ -43,12 +42,12 @@ public class OfferController {
 
     //정보 확인
     @GetMapping("/offerInfo")
-    public String offerInfo(Long offer_no , Model model){
+    public String offerInfo(Long offer_no, Model model) {
         log.info("offer_no : {}", offer_no);
         OfferVO offerVO = offerService.getOffer(offer_no);
         MemberVO memberVO = memberService.getMember(Long.valueOf(offerVO.getUser_no()));
-        model.addAttribute( "offer", offerVO);
-        model.addAttribute( "member", memberVO);
+        model.addAttribute("offer", offerVO);
+        model.addAttribute("member", memberVO);
         return "jobOffer/offerInfo";
     }
 
@@ -56,16 +55,15 @@ public class OfferController {
     public String offerUpdate(Long offer_no, Model model) {
         log.info("offer_no : {}", offer_no);
         OfferVO offerVO = offerService.getOffer(offer_no);
-        model.addAttribute( "offer", offerVO);
+        model.addAttribute("offer", offerVO);
         return "jobOffer/updateOffer";
     }
 
     @PostMapping("/updateOffer")
-    public String offerUpdatePro(Long offer_no , @ModelAttribute OfferVO offerVO) {
+    public String offerUpdatePro(Long offer_no, @ModelAttribute OfferVO offerVO) {
         log.info("offer_no : {}", offer_no);
         offerService.updateOffer(offerVO);
         return "redirect:/offerInfo?offer_no=" + offer_no;
-
     }
 
     // 글 삭제
@@ -75,11 +73,4 @@ public class OfferController {
         offerService.deleteOffer(offer_no);
         return "redirect:/mainPage";
     }
-
-
-
-
-
-
-
 }

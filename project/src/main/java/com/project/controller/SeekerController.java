@@ -1,11 +1,8 @@
 package com.project.controller;
 
-
 import com.project.domain.MemberVO;
-import com.project.domain.OfferVO;
 import com.project.domain.SeekerVO;
 import com.project.service.MemberService;
-import com.project.service.OfferService;
 import com.project.service.SeekerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -46,10 +43,7 @@ public class SeekerController {
         return "redirect:/jobSeeker/{seekerCategory}";
     }
 
-
-
-
-    //쇼 정보 확인
+    //정보 확인
     @GetMapping("/seekerInfo")
     public String seekerInfo(Long seeker_no , Model model){
         log.info("seeker_no : {}", seeker_no);
@@ -73,7 +67,6 @@ public class SeekerController {
         log.info("seeker_no : {}", seeker_no);
         seekerService.updateSeeker(seekerVO);
         return "redirect:/seekerInfo?seeker_no=" + seeker_no;
-
     }
 
     // 글 삭제
@@ -83,12 +76,4 @@ public class SeekerController {
         seekerService.deleteSeeker(seeker_no);
         return "redirect:/mainPage";
     }
-
-
-
-
-
-
-
-
 }

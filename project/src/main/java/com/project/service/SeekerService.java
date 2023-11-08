@@ -9,18 +9,12 @@ import java.util.List;
 public interface SeekerService {
 
     List<SeekerVO> findEditerSeeker();
-
     Long findEditerSeekerCount(Pager pager);
-
     List<SeekerVO> getEditerSeekerListWithPaging(Pager pager);
-
-
-
 
     // List<SeekerVO> findThumbnailerSeeker();
     Long findThumbnailerSeekerCount(Pager pager);
     List<SeekerVO> getThumbnailerSeekerListWithPaging(Pager pager);
-
 
     //List<SeekerVO> findSdCharacterSeeker();
     Long findSdCharacterSeekerCount(Pager pager);
@@ -34,16 +28,11 @@ public interface SeekerService {
     Long findCamaraManSeekerCount(Pager pager);
     List<SeekerVO> getCamaraManSeekerListWithPaging(Pager pager);
 
-
-
     public SeekerVO getSeeker(Long seeker_no);
 
 
-    // 글 등록 처리
     void addSeekerForm(SeekerVO seekerVO);
-
     void updateSeeker(SeekerVO seekerVO);
-
     void deleteSeeker(Long seeker_no);
 
 }

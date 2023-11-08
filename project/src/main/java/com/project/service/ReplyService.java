@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface ReplyService {
 	
-	// 댓글 등록 
+		// 댓글 등록
 		public int add(ReplyVO vo);
 		// 댓글 한개 조회 
 		public ReplyVO get(Long rno);
@@ -25,7 +25,6 @@ public interface ReplyService {
 		// 페이징처리 + 댓글 목록 가져오기 
 		public List<ReplyVO> getListWithPage(Long comm_no, Pager pageInfo);
 
-		
 		// 본문글에 해당하는 댓글의 전체 개수 구하기 
 		public int getReplyCount(Long comm_no);
 		

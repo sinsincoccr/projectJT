@@ -29,7 +29,6 @@
     </select>
 
 
-
     <select id="findThumbnailerSeeker" resultType="SeekerVO">
         select * from job_seeker where seeker_category = 'thumbnailerSeeker' ORDER BY seeker_no ASC
     </select>

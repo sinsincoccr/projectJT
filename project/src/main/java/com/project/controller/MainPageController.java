@@ -1,6 +1,5 @@
 package com.project.controller;
 
-
 import com.project.domain.*;
 import com.project.dto.PageDTO;
 import com.project.dto.Pager;
@@ -29,7 +28,7 @@ public class MainPageController {
     private final StoreService storeService;
     private final BoardService boardService;
 
-    //메인페이지 이동
+    // 메인페이지 이동
     @GetMapping("/mainPage")
     public String mainPage(Pager pager, Model model, Model model2, Model model3, Model model4, Model model5, Model model6, Model model7, HttpSession session) {
         log.info("session.loginMember : {} " , session.getAttribute("loginMember"));
@@ -52,7 +51,7 @@ public class MainPageController {
         return "mainPage";
     }
 
-    //구인 페이지 이동
+    // 구인 페이지 이동
     @GetMapping("/jobOffer/editer")
     public String editer(Pager pager ,Model model, Model model2){
         List<OfferVO> offerVO = offerService.getEditorListWithPaging(pager);
@@ -63,14 +62,12 @@ public class MainPageController {
         return "jobOffer/editer";
     }
 
-
     @GetMapping("/jobOffer/thumbnailer")
     public String thumbnailer(Pager pager ,Model model, Model model2){
         List<OfferVO> offerVO = offerService.getThumbnailerListWithPaging(pager);
         log.info("pager : {}", pager);
         model.addAttribute("pageDTO", new PageDTO(pager, offerService.findThumbnailerCount(pager)));
         model.addAttribute("offer", offerVO);
-
 
         return "jobOffer/thumbnailer";
     }
@@ -82,7 +79,6 @@ public class MainPageController {
         model.addAttribute("pageDTO", new PageDTO(pager, offerService.findSdCharacterCount(pager)));
         model.addAttribute("offer", offerVO);
 
-
         return "jobOffer/sdCharacter";
     }
 
@@ -92,7 +88,6 @@ public class MainPageController {
         log.info("pager : {}", pager);
         model.addAttribute("pageDTO", new PageDTO(pager, offerService.findVirtualCount(pager)));
         model.addAttribute("offer", offerVO);
-
 
         return "jobOffer/virtual";
     }
@@ -106,13 +101,9 @@ public class MainPageController {
         return "jobOffer/camaraMan";
     }
 
-
-    //구인 페이지 이동
+    // 구직 페이지 이동
     @GetMapping("/jobSeeker/editerSeeker")
     public String editerSeeker(Pager pager ,Model model, Model model2){
-        //List<SeekerVO> seekerVO = seekerService.findEditerSeeker();
-        //model.addAttribute("member", new MemberVO());
-        //model2.addAttribute("seeker", seekerVO);
         List<SeekerVO> seekerVO = seekerService.getEditerSeekerListWithPaging(pager);
         log.info("pager : {}", pager);
         model.addAttribute("pageDTO", new PageDTO(pager, seekerService.findEditerSeekerCount(pager)));
@@ -121,67 +112,56 @@ public class MainPageController {
         return "jobSeeker/editerSeeker";
     }
 
-
     @GetMapping("/jobSeeker/thumbnailerSeeker")
     public String thumbnailerSeeker(Pager pager ,Model model, Model model2){
-        //model.addAttribute("member", new MemberVO());
-        //List<SeekerVO> seekerVOList = seekerService.findThumbnailerSeeker();
-        //model2.addAttribute("seeker", seekerVOList);
         List<SeekerVO> seekerVO = seekerService.getThumbnailerSeekerListWithPaging(pager);
         log.info("pager : {}", pager);
         model.addAttribute("pageDTO", new PageDTO(pager, seekerService.findThumbnailerSeekerCount(pager)));
         model.addAttribute("seeker", seekerVO);
+
         return "jobSeeker/thumbnailerSeeker";
     }
 
     @GetMapping("/jobSeeker/sdCharacterSeeker")
     public String sdCharacterSeeker(Pager pager ,Model model, Model model2){
-        //model.addAttribute("member", new MemberVO());
-        //List<SeekerVO> seekerVOList = seekerService.findSdCharacterSeeker();
-        //model2.addAttribute("seeker", seekerVOList);
         List<SeekerVO> seekerVO = seekerService.getSdCharacterSeekerListWithPaging(pager);
         log.info("pager : {}", pager);
         model.addAttribute("pageDTO", new PageDTO(pager, seekerService.findSdCharacterSeekerCount(pager)));
         model.addAttribute("seeker", seekerVO);
+
         return "jobSeeker/sdCharacterSeeker";
     }
 
     @GetMapping("/jobSeeker/virtualSeeker")
     public String virtualSeeker(Pager pager ,Model model, Model model2){
-        //model.addAttribute("member", new MemberVO());
-        //List<SeekerVO> seekerVOList = seekerService.findVirtualSeeker();
-        //model2.addAttribute("seeker", seekerVOList);
         List<SeekerVO> seekerVO = seekerService.getVirtualSeekerListWithPaging(pager);
         log.info("pager : {}", pager);
         model.addAttribute("pageDTO", new PageDTO(pager, seekerService.findVirtualSeekerCount(pager)));
         model.addAttribute("seeker", seekerVO);
+
         return "jobSeeker/virtualSeeker";
     }
 
     @GetMapping("/jobSeeker/camaraManSeeker")
     public String camaraManSeeker(Pager pager ,Model model, Model model2){
-        //model.addAttribute("member", new MemberVO());
-        //List<SeekerVO> seekerVOList = seekerService.findCamaraManSeeker();
-        //model2.addAttribute("seeker", seekerVOList);
         List<SeekerVO> seekerVO = seekerService.getCamaraManSeekerListWithPaging(pager);
         log.info("pager : {}", pager);
         model.addAttribute("pageDTO", new PageDTO(pager, seekerService.findCamaraManSeekerCount(pager)));
         model.addAttribute("seeker", seekerVO);
+
         return "jobSeeker/camaraManSeeker";
     }
 
     // 스토어 바로가기
     @GetMapping("/store/premierProStore")
     public String premierProStore(Pager pager,Model model){
-        //List<StoreProductVO> storeProductVO = storeService.findPremierProStore();
-        //model.addAttribute("product", storeProductVO);
         List<StoreProductVO> storeProductVO = storeService.getPremierProStoreListWithPaging(pager);
         log.info("pager : {}", pager);
         model.addAttribute("pageDTO", new PageDTO(pager, storeService.findPremierProStoreCount(pager)));
         model.addAttribute("storeProduct", storeProductVO);
+
         return "store/premierProStore";
     }
-
 
     @GetMapping("/store/finalCutStore")
     public String finalCutStore(Pager pager,Model model){
@@ -189,6 +169,7 @@ public class MainPageController {
         log.info("pager : {}", pager);
         model.addAttribute("pageDTO", new PageDTO(pager, storeService.findFinalCutStoreCount(pager)));
         model.addAttribute("storeProduct", storeProductVO);
+
         return "store/finalCutStore";
     }
 
@@ -198,6 +179,7 @@ public class MainPageController {
         log.info("pager : {}", pager);
         model.addAttribute("pageDTO", new PageDTO(pager, storeService.findImageStoreCount(pager)));
         model.addAttribute("storeProduct", storeProductVO);
+
         return "store/imageStore";
     }
 
@@ -208,23 +190,22 @@ public class MainPageController {
         return "store/powerBannerStore";
     }
 
+    // 게시판 바로가기
     @GetMapping("/board/freeBoard")
     public String freeBoard(Pager pager, Model model){
         List<BoardVO> boardVO = boardService.getFreeBoardListWithPaging(pager);
         log.info("pager : {}", pager);
         model.addAttribute("pageDTO", new PageDTO(pager, boardService.getFreeBoard(pager)));
         model.addAttribute("board", boardVO);
+
         return "board/freeBoard";
     }
-
-
 
     @GetMapping("/board/feedbackBoard")
     public String feedbackBoard(Pager pager, Model model){
         log.info("pager : {}", pager);
         model.addAttribute("pageDTO", new PageDTO(pager, boardService.getFeedbackBoard(pager)));
         model.addAttribute("board", boardService.getFeedbackBoardListWithPaging(pager));
-
 
         return "board/feedbackBoard";
     }
@@ -236,7 +217,6 @@ public class MainPageController {
         model.addAttribute("pageDTO", new PageDTO(pager, boardService.getRevenueBoard(pager)));
         model.addAttribute("board", boardVO);
 
-
         return "board/revenueBoard";
     }
 
@@ -247,8 +227,6 @@ public class MainPageController {
         model.addAttribute("pageDTO", new PageDTO(pager, boardService.getTaxBoard(pager)));
         model.addAttribute("board", boardVO);
 
-
         return "board/taxBoard";
     }
-
 }

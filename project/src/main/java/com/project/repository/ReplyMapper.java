@@ -41,6 +41,4 @@ public interface ReplyMapper {
 
 	// 글 댓글 개수 수정하기
 	public void updateReplyCount(@Param("replyCount") int replyCount, @Param("comm_no") Long comm_no);
-		
-		
 }

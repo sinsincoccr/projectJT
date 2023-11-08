@@ -21,10 +21,9 @@ public class LoginController {
     private final MemberService memberService;
 
     @RequestMapping("/")
-    public String home(@ModelAttribute MemberVO member, HttpSession session,HttpServletRequest request, Model model) {
-        //HttpSession session = request.getSession(false);
+    public String home(@ModelAttribute MemberVO member, HttpSession session, HttpServletRequest request, Model model) {
         model.addAttribute("member", new MemberVO());
-        //세션 없으면 로그인로 이동
+        // 세션 없으면 로그인로 이동
         if (session == null) {
             // 여기서 세션에 null 값을 넣어줍니다.
             session.setAttribute("loginMember", null);
@@ -40,13 +39,11 @@ public class LoginController {
         return "login";
     }
 
-
     @PostMapping("/login")
     public String loginPro(@ModelAttribute MemberVO member, HttpSession session, Model model){
         log.info("member PostMapping : {}", member);
 
         // 로그인 로직 구현
-        // memberService를 사용하여 회원 정보 검증 등의 로직을 수행
         MemberVO loginMember = memberService.login(member);
         log.info("loginMember {}", loginMember);
         if(loginMember != null) {
@@ -64,17 +61,7 @@ public class LoginController {
     // 로그아웃 요청
     @GetMapping("logout")
     public String logout(HttpSession session) {
-
         session.invalidate();
-
         return "redirect:/";
-
     }
-
-
-
-
-
-
 }
-

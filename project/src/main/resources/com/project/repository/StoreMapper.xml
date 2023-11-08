@@ -28,7 +28,6 @@
     ]]>
     </select>
 
-
     <select id="findFinalCutStore" resultType="StoreProductVO">
         select * from store_product where product_category = 'finalCutStore' ORDER BY product_no ASC
     </select>

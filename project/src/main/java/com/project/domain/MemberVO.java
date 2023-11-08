@@ -15,5 +15,4 @@ public class MemberVO {
     private LocalDateTime regDate;
     private String user_state;
 
-
 }

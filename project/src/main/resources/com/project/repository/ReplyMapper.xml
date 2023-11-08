@@ -52,5 +52,4 @@
 	<select id="getAllReply" resultType="com.project.domain.ReplyVO">
 		select * from comm_reply
 	</select>
-	
 	</mapper>

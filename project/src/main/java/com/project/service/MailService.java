@@ -11,7 +11,6 @@ import javax.mail.internet.MimeMessage;
 @Service
 @RequiredArgsConstructor
 public class MailService {
-
     private final JavaMailSender javaMailSender;
     private static final String senderEmail= "sinsincoccr@gmail.com";
     private static int number;

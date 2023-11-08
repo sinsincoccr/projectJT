@@ -14,7 +14,6 @@ import java.util.UUID;
 
 @Component // 일반 부품 클래스 -> 스프링빈으로 등록
 public class FileUpload {
-
     @Value("${file.dir}") // application.properties 에 저장한 파일 저장 경로 가져오기
     private String fileDir;
 
@@ -46,7 +45,5 @@ public class FileUpload {
         String ext = orgFileName.substring(idx);
         return ext;
     }
-
-
 
 }

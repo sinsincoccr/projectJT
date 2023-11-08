@@ -37,5 +37,4 @@ public interface BoardMapper {
     void updateBoard(BoardVO boardVO);
 
     void deleteBoard(Long comm_no);
-
 }

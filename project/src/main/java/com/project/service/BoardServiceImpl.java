@@ -83,7 +83,4 @@ public class BoardServiceImpl implements BoardService{
         boardMapper.deleteBoard(comm_no);
     }
 
-
-
-
 }

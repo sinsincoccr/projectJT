@@ -6,9 +6,7 @@ import java.sql.Timestamp;
 
 @Data
 public class ReplyVO {
-	
-	
-	private Long rno;  
+	private Long rno;
 	private Long comm_no;
 	private String replyContent; 
 	private String user_no;

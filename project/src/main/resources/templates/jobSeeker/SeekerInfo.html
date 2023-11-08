@@ -16,17 +16,11 @@
 
 <br/><br/><br/>
 <div class="container">
-
-
-
-
-
     <div class="row">
         <div class="col">
             <span th:text="${seeker.seeker_title} " style="font-size: 30px; font-family: 'Arial', sans-serif; font-weight: bold;">">제목</span><br/>
             <span th:text="'경력: ' + ${seeker.seeker_career + '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'}" style="font-size: 15px; font-family: 'Arial', sans-serif;"></span>
             <span th:text="'고용형태: ' + ${seeker.seeker_type}" style="font-size: 15px; font-family: 'Arial', sans-serif;"></span><br/>
-
             <span th:text="'사용툴: ' + ${seeker.seeker_tools}+ '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'" style="font-size: 15px; font-family: 'Arial', sans-serif;"></span>
             <span th:text="'건당: ' + ${seeker.seeker_case} + '만원'" style="font-size: 15px; font-family: 'Arial', sans-serif;"></span><br/>
             <span th:text="'분당: ' + ${seeker.seeker_min} + '만원'" style="font-size: 15px; font-family: 'Arial', sans-serif;"></span>
@@ -39,25 +33,21 @@
         </div>
     </div>
 
-
-
     <div class="container" style="border: 1px solid #ccc; height: 200px; background-color: #f0f8ff; line-height: 1.2; overflow-y: scroll;">
-        <span th:utext=" ${seeker.seeker_portofolio}"></span>
+        <span th:utext="${seeker.seeker_portofolio}"></span>
     </div>
 
+    <div style="text-align: right;">
+        <form th:action="@{/updateSeeker}" th:object="${seeker}" method="post" enctype="multipart/form-data" style="display: inline-block;">
+            <!-- form fields here -->
+            <input type="button" th:if="${session.loginMember != null and session.loginMember.user_no == seeker.user_no}" value="수정" th:onclick="|location.href='/updateSeeker?seeker_no=${seeker.seeker_no}'|" style="padding: 5px 10px; background: #2ba0db; color: #fff; font-size: 13px; text-decoration: none; text-transform: uppercase; border: none; cursor: pointer;">
+        </form>
 
-
-<div style="text-align: right;">
-<form th:action="@{/updateSeeker}" th:object="${seeker}" method="post" enctype="multipart/form-data" style="display: inline-block;">
-    <!-- form fields here -->
-    <input type="button" th:if="${session.loginMember != null and session.loginMember.user_no == seeker.user_no}" value="수정" th:onclick="|location.href='/updateSeeker?seeker_no=${seeker.seeker_no}'|" style="padding: 5px 10px; background: #2ba0db; color: #fff; font-size: 13px; text-decoration: none; text-transform: uppercase; border: none; cursor: pointer;">
-</form>
-
-<form th:action="@{/deleteSeeker}" method="post" style="display: inline-block;">
-    <input type="hidden" name="seeker_no" th:value="${seeker.seeker_no}" />
-    <input type="submit" th:if="${session.loginMember != null and session.loginMember.user_no == seeker.user_no}" value="삭제" style="padding: 5px 10px; background: #2ba0db; color: #fff; font-size: 13px; text-decoration: none; text-transform: uppercase; border: none; cursor: pointer;" />
-</form>
-</div>
+        <form th:action="@{/deleteSeeker}" method="post" style="display: inline-block;">
+            <input type="hidden" name="seeker_no" th:value="${seeker.seeker_no}" />
+            <input type="submit" th:if="${session.loginMember != null and session.loginMember.user_no == seeker.user_no}" value="삭제" style="padding: 5px 10px; background: #2ba0db; color: #fff; font-size: 13px; text-decoration: none; text-transform: uppercase; border: none; cursor: pointer;" />
+        </form>
+    </div>
 </div>
 </body>
 </html>

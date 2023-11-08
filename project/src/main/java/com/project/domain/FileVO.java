@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
-
 // 파일 하나에 대한 정보를 담는 객체
 @Data
 @NoArgsConstructor

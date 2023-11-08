@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @Slf4j
 public class MemberServiceImpl implements MemberService{
-
     private final MemberRepository memberRepository;
     private final MemberMapper memberMapper;
 
@@ -24,8 +23,6 @@ public class MemberServiceImpl implements MemberService{
     public MemberVO createId(MemberVO member) {
         return memberRepository.createId(member);
     }
-
-
 
     @Override
     public MemberVO login(MemberVO member) {
@@ -58,6 +55,5 @@ public class MemberServiceImpl implements MemberService{
     public void modifyId(MemberVO member) {
         memberMapper.modifyId(member);
     }
-
 
 }

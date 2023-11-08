@@ -42,5 +42,4 @@ public interface SeekerMapper {
 
     void deleteSeeker(Long seeker_no);
 
-
 }

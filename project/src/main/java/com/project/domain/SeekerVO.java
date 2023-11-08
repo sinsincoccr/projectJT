@@ -19,5 +19,4 @@ public class SeekerVO {
     private Long user_no;
     private String user_name;
 
-
 }

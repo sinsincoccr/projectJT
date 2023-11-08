@@ -14,5 +14,4 @@ public interface KakaoMapper {
     void addKakaopayForm(@Param("user_no")Long user_no, @Param("product_no")Long product_no);
 
     List<OrderListVO> getOrderList(Long user_no);
-
 }

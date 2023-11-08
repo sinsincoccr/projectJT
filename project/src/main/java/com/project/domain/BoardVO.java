@@ -14,6 +14,4 @@ public class BoardVO {
     private LocalDateTime regDate;
     private Long user_no;
 
-
-
 }

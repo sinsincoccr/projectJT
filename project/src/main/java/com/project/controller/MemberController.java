@@ -27,7 +27,7 @@ public class MemberController {
     private final KakaoService kakaoService;
     private final StoreService storeService;
 
-    //회원가입
+    // 회원가입
     @GetMapping("/createId")
     public String create(Model model){
         model.addAttribute("member", new MemberVO());
@@ -42,18 +42,15 @@ public class MemberController {
         return "redirect:/mainPage"; // 회원 상세 페이지로 이동
     }
 
-    //아이디 중복체크
+    // 아이디 중복체크
     @PostMapping("/idCheck")
     @ResponseBody
     public int idCheck(@RequestParam("id") String id) {
-
         int cnt = memberService.idCheck(id);
         return cnt;
-
     }
 
-
-    //마이페이지
+    // 마이페이지
     @GetMapping("/myPage")
     public String myPage(Model model, HttpSession session){
         MemberVO member = (MemberVO) session.getAttribute("loginMember");
@@ -74,8 +71,7 @@ public class MemberController {
         return "member/myPage";
     }
 
-
-    //정보 수정
+    // 정보 수정
     @GetMapping("/modifyId")
     public String modify(Model model, HttpSession session){
         MemberVO member = (MemberVO) session.getAttribute("loginMember");
@@ -89,13 +85,4 @@ public class MemberController {
         memberService.modifyId(member);
         return "redirect:/mainPage"; // 회원 상세 페이지로 이동
     }
-
-
-
-
-
-
-
-
-
 }

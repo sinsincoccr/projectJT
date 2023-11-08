@@ -11,8 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @Slf4j
 public class MainPageServiceImpl implements MainPageService{
-
-    //메인페이지에서 음식점 주제로 이동
     @Override
     public MemberVO editer(MemberVO member){
         return member;
