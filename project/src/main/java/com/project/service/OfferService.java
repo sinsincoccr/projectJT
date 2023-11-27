@@ -4,36 +4,37 @@ package com.project.service;
 import com.project.domain.BoardVO;
 import com.project.domain.OfferVO;
 import com.project.dto.Pager;
+import com.project.entity.OfferEntity;
 
 import java.util.List;
 
 public interface OfferService {
 
 
-    List<OfferVO> findEditer();
+    List<OfferEntity> findEditer();
     Long findEditerCount(Pager pager);
-    List<OfferVO> getEditorListWithPaging(Pager pager);
+    List<OfferEntity> getEditorListWithPaging(Pager pager);
 
-    List<OfferVO> findThumbnailer();
+    List<OfferEntity> findThumbnailer();
     Long findThumbnailerCount(Pager pager);
-    List<OfferVO> getThumbnailerListWithPaging(Pager pager);
+    List<OfferEntity> getThumbnailerListWithPaging(Pager pager);
 
-    List<OfferVO> findSdCharacter();
+    List<OfferEntity> findSdCharacter();
     Long findSdCharacterCount(Pager pager);
-    List<OfferVO> getSdCharacterListWithPaging(Pager pager);
+    List<OfferEntity> getSdCharacterListWithPaging(Pager pager);
 
-    List<OfferVO> findVirtual();
+    List<OfferEntity> findVirtual();
     Long findVirtualCount(Pager pager);
-    List<OfferVO> getVirtualListWithPaging(Pager pager);
+    List<OfferEntity> getVirtualListWithPaging(Pager pager);
 
-    List<OfferVO> findCamaraMan();
+    List<OfferEntity> findCamaraMan();
     Long findCamaraManCount(Pager pager);
-    List<OfferVO> getCamaraManListWithPaging(Pager pager);
+    List<OfferEntity> getCamaraManListWithPaging(Pager pager);
 
-    public OfferVO getOffer(Long offer_no);
+    public OfferEntity getOffer(Long offer_no);
 
-    void addOfferForm(OfferVO offerVO);
-    void updateOffer(OfferVO offerVO);
+    void addOfferForm(OfferEntity offerEntity);
+    void updateOffer(OfferEntity offerEntity);
     void deleteOffer(Long offer_no);
 
 }

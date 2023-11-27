@@ -2,6 +2,7 @@ package com.project.controller;
 
 import com.project.domain.MemberVO;
 import com.project.domain.OfferVO;
+import com.project.entity.OfferEntity;
 import com.project.service.MemberService;
 import com.project.service.OfferService;
 import lombok.RequiredArgsConstructor;
@@ -22,21 +23,21 @@ public class OfferController {
 
     // 글작성 폼
     @GetMapping("/writeOffer")
-    public String addOffer(@ModelAttribute OfferVO offerVO, Model model) {
-        model.addAttribute("offer", offerVO);
+    public String addOffer(@ModelAttribute OfferEntity offerEntity, Model model) {
+        model.addAttribute("offer", offerEntity);
         return "jobOffer/writeOffer";
     }
 
     @PostMapping("/writeOffer")
-    public String addOfferForm(@ModelAttribute OfferVO offerVO, Model model, HttpSession session, RedirectAttributes rttr) {
+    public String addOfferForm(@ModelAttribute OfferEntity offerEntity, Model model, HttpSession session, RedirectAttributes rttr) {
         MemberVO member = (MemberVO) session.getAttribute("loginMember");
-        String offerCategory = offerVO.getOffer_category();
+        String offerCategory = offerEntity.getOffer_category();
         rttr.addAttribute("offerCategory", offerCategory);
         // Set the user_id field in offerVO
-        offerVO.setUser_no(member.getUser_no());
+        offerEntity.setUser_no(member.getUser_no());
 
-        log.info("offervo ::::: {}", offerVO);
-        offerService.addOfferForm(offerVO);
+        log.info("offervo ::::: {}", offerEntity);
+        offerService.addOfferForm(offerEntity);
         return "redirect:/jobOffer/{offerCategory}";
     }
 
@@ -44,9 +45,9 @@ public class OfferController {
     @GetMapping("/offerInfo")
     public String offerInfo(Long offer_no, Model model) {
         log.info("offer_no : {}", offer_no);
-        OfferVO offerVO = offerService.getOffer(offer_no);
-        MemberVO memberVO = memberService.getMember(Long.valueOf(offerVO.getUser_no()));
-        model.addAttribute("offer", offerVO);
+        OfferEntity offerEntity = offerService.getOffer(offer_no);
+        MemberVO memberVO = memberService.getMember(offerEntity.getUser_no());
+        model.addAttribute("offer", offerEntity);
         model.addAttribute("member", memberVO);
         return "jobOffer/offerInfo";
     }
@@ -54,20 +55,20 @@ public class OfferController {
     @GetMapping("/updateOffer")
     public String offerUpdate(Long offer_no, Model model) {
         log.info("offer_no : {}", offer_no);
-        OfferVO offerVO = offerService.getOffer(offer_no);
-        model.addAttribute("offer", offerVO);
+        OfferEntity offerEntity = offerService.getOffer(offer_no);
+        model.addAttribute("offer", offerEntity);
         return "jobOffer/updateOffer";
     }
 
     @PostMapping("/updateOffer")
-    public String offerUpdatePro(Long offer_no, @ModelAttribute OfferVO offerVO) {
+    public String offerUpdatePro(Long offer_no, @ModelAttribute OfferEntity offerEntity) {
         log.info("offer_no : {}", offer_no);
-        offerService.updateOffer(offerVO);
+        offerService.updateOffer(offerEntity);
         return "redirect:/offerInfo?offer_no=" + offer_no;
     }
 
     // 글 삭제
-    @PostMapping("/deleteOffer")
+    @GetMapping("/deleteOffer")
     public String deletePro(@RequestParam Long offer_no) {
         log.info("delete offer_no : {}", offer_no);
         offerService.deleteOffer(offer_no);

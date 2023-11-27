@@ -54,4 +54,7 @@ public interface OfferMapper {
 
     void deleteOffer(Long offer_no);
 
+
+
+
 }

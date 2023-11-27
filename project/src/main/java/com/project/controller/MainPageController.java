@@ -3,6 +3,7 @@ package com.project.controller;
 import com.project.domain.*;
 import com.project.dto.PageDTO;
 import com.project.dto.Pager;
+import com.project.entity.OfferEntity;
 import com.project.service.BoardService;
 import com.project.service.OfferService;
 import com.project.service.SeekerService;
@@ -33,9 +34,9 @@ public class MainPageController {
     public String mainPage(Pager pager, Model model, Model model2, Model model3, Model model4, Model model5, Model model6, Model model7, HttpSession session) {
         log.info("session.loginMember : {} " , session.getAttribute("loginMember"));
         model.addAttribute("member", new MemberVO());
-        List<OfferVO> offerVOList = offerService.findEditer();
+        List<OfferEntity> offerEntities = offerService.findEditer();
         List<SeekerVO> seekerVOList = seekerService.findEditerSeeker();
-        model2.addAttribute("offer", offerVOList);
+        model2.addAttribute("offer", offerEntities);
         model3.addAttribute("seeker", seekerVOList);
         List<BoardVO> boardVOFree = boardService.getFreeBoardListWithPaging(new Pager());
         List<BoardVO> boardVOFeed = boardService.getFeedbackBoardListWithPaging(new Pager());
@@ -54,17 +55,17 @@ public class MainPageController {
     // 구인 페이지 이동
     @GetMapping("/jobOffer/editer")
     public String editer(Pager pager ,Model model, Model model2){
-        List<OfferVO> offerVO = offerService.getEditorListWithPaging(pager);
+        List<OfferEntity> offerEntities = offerService.getEditorListWithPaging(pager);
         log.info("pager : {}", pager);
         model.addAttribute("pageDTO", new PageDTO(pager, offerService.findEditerCount(pager)));
-        model.addAttribute("offer", offerVO);
+        model.addAttribute("offer", offerEntities);
 
         return "jobOffer/editer";
     }
 
     @GetMapping("/jobOffer/thumbnailer")
     public String thumbnailer(Pager pager ,Model model, Model model2){
-        List<OfferVO> offerVO = offerService.getThumbnailerListWithPaging(pager);
+        List<OfferEntity> offerVO = offerService.getThumbnailerListWithPaging(pager);
         log.info("pager : {}", pager);
         model.addAttribute("pageDTO", new PageDTO(pager, offerService.findThumbnailerCount(pager)));
         model.addAttribute("offer", offerVO);
@@ -74,7 +75,7 @@ public class MainPageController {
 
     @GetMapping("/jobOffer/sdCharacter")
     public String sdCharacter(Pager pager ,Model model, Model model2){
-        List<OfferVO> offerVO = offerService.getSdCharacterListWithPaging(pager);
+        List<OfferEntity> offerVO = offerService.getSdCharacterListWithPaging(pager);
         log.info("pager : {}", pager);
         model.addAttribute("pageDTO", new PageDTO(pager, offerService.findSdCharacterCount(pager)));
         model.addAttribute("offer", offerVO);
@@ -84,7 +85,7 @@ public class MainPageController {
 
     @GetMapping("/jobOffer/virtual")
     public String virtual(Pager pager ,Model model, Model model2){
-        List<OfferVO> offerVO = offerService.getVirtualListWithPaging(pager);
+        List<OfferEntity> offerVO = offerService.getVirtualListWithPaging(pager);
         log.info("pager : {}", pager);
         model.addAttribute("pageDTO", new PageDTO(pager, offerService.findVirtualCount(pager)));
         model.addAttribute("offer", offerVO);
@@ -94,7 +95,7 @@ public class MainPageController {
 
     @GetMapping("/jobOffer/camaraMan")
     public String camaraMan(Pager pager ,Model model, Model model2){
-        List<OfferVO> offerVO = offerService.getCamaraManListWithPaging(pager);
+        List<OfferEntity> offerVO = offerService.getCamaraManListWithPaging(pager);
         log.info("pager : {}", pager);
         model.addAttribute("pageDTO", new PageDTO(pager, offerService.findCamaraManCount(pager)));
         model.addAttribute("offer", offerVO);

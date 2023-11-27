@@ -4,11 +4,14 @@ import com.project.domain.BoardVO;
 import com.project.domain.MemberVO;
 import com.project.domain.OfferVO;
 import com.project.dto.Pager;
+import com.project.entity.OfferEntity;
+import com.project.repository.JPAOfferMapper;
 import com.project.repository.OfferMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
@@ -16,105 +19,107 @@ import java.util.List;
 @Slf4j
 public class OfferServiceImpl implements OfferService {
     private final OfferMapper offerMapper;
-
+    private  final JPAOfferMapper jpaOfferMapper;
     @Override
-    public List<OfferVO> findEditer() {
-        return offerMapper.findEditer();
+    public List<OfferEntity> findEditer() {
+        return jpaOfferMapper.findEditer();
     }
 
     @Override
     public Long findEditerCount(Pager pager) {
-        return offerMapper.findEditerCount(pager);
+        return jpaOfferMapper.findEditerCount(pager);
     }
 
     @Override
-    public List<OfferVO> getEditorListWithPaging(Pager pager) {
-        return offerMapper.getEditorListWithPaging(pager);
+    public List<OfferEntity> getEditorListWithPaging(Pager pager) {
+        return jpaOfferMapper.getEditorListWithPaging(pager);
     }
 
 
     @Override
-    public List<OfferVO> findThumbnailer() {
-        return offerMapper.findThumbnailer();
+    public List<OfferEntity> findThumbnailer() {
+        return jpaOfferMapper.findThumbnailer();
     }
 
     @Override
     public Long findThumbnailerCount(Pager pager) {
-        return offerMapper.findThumbnailerCount(pager);
+        return jpaOfferMapper.findThumbnailerCount(pager);
     }
 
     @Override
-    public List<OfferVO> getThumbnailerListWithPaging(Pager pager) {
-        return offerMapper.getThumbnailerListWithPaging(pager);
+    public List<OfferEntity> getThumbnailerListWithPaging(Pager pager) {
+        return jpaOfferMapper.getThumbnailerListWithPaging(pager);
     }
 
     @Override
-    public List<OfferVO> findSdCharacter() {
-        return offerMapper.findSdCharacter();
+    public List<OfferEntity> findSdCharacter() {
+        return jpaOfferMapper.findSdCharacter();
     }
     @Override
     public Long findSdCharacterCount(Pager pager) {
-        return offerMapper.findSdCharacterCount(pager);
+        return jpaOfferMapper.findSdCharacterCount(pager);
     }
 
     @Override
-    public List<OfferVO> getSdCharacterListWithPaging(Pager pager) {
-        return offerMapper.getSdCharacterListWithPaging(pager);
+    public List<OfferEntity> getSdCharacterListWithPaging(Pager pager) {
+        return jpaOfferMapper.getSdCharacterListWithPaging(pager);
     }
 
     @Override
-    public List<OfferVO> findVirtual() {
-        return offerMapper.findVirtual();
+    public List<OfferEntity> findVirtual() {
+        return jpaOfferMapper.findVirtual();
     }
 
     @Override
     public Long findVirtualCount(Pager pager) {
-        return offerMapper.findVirtualCount(pager);
+        return jpaOfferMapper.findVirtualCount(pager);
     }
 
     @Override
-    public List<OfferVO> getVirtualListWithPaging(Pager pager) {
-        return offerMapper.getVirtualListWithPaging(pager);
+    public List<OfferEntity> getVirtualListWithPaging(Pager pager) {
+        return jpaOfferMapper.getVirtualListWithPaging(pager);
     }
 
 
 
     @Override
-    public List<OfferVO> findCamaraMan() {
-        return offerMapper.findCamaraMan();
+    public List<OfferEntity> findCamaraMan() {
+        return jpaOfferMapper.findCamaraMan();
     }
 
     @Override
     public Long findCamaraManCount(Pager pager) {
-        return offerMapper.findCamaraManCount(pager);
+        return jpaOfferMapper.findCamaraManCount(pager);
     }
 
     @Override
-    public List<OfferVO> getCamaraManListWithPaging(Pager pager) {
-        return offerMapper.getCamaraManListWithPaging(pager);
-    }
-
-
-    @Override
-    public OfferVO getOffer(Long offer_no) {
-        OfferVO offerVO = offerMapper.getOffer(offer_no);
-        return offerVO;
+    public List<OfferEntity> getCamaraManListWithPaging(Pager pager) {
+        return jpaOfferMapper.getCamaraManListWithPaging(pager);
     }
 
 
     @Override
-    public void addOfferForm(OfferVO offerVO) {
-        offerMapper.addOfferForm(offerVO);
+    public OfferEntity getOffer(Long offer_no) {
+        OfferEntity offerEntity = jpaOfferMapper.getOffer(offer_no);
+        return offerEntity;
     }
+
 
     @Override
-    public void updateOffer(OfferVO offerVO) {
-        offerMapper.updateOffer(offerVO);
+    public void addOfferForm(OfferEntity offerEntity) {
+        jpaOfferMapper.save(offerEntity);
+    }
+    @Transactional
+    @Override
+    public void updateOffer(OfferEntity offerEntity) {
+        jpaOfferMapper.updateOffer(offerEntity);
     }
 
+
+    @Transactional
     @Override
     public void deleteOffer(Long offer_no) {
-        offerMapper.deleteOffer(offer_no);
+        jpaOfferMapper.deleteOffer(offer_no);
     }
 
 
