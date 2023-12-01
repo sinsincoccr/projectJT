@@ -1,5 +1,6 @@
 package com.project.controller;
 
+import com.project.aspect.TokenRequired;
 import com.project.domain.*;
 import com.project.dto.PageDTO;
 import com.project.dto.Pager;
@@ -10,12 +11,17 @@ import com.project.service.SeekerService;
 import com.project.service.StoreService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -30,9 +36,11 @@ public class MainPageController {
     private final BoardService boardService;
 
     // 메인페이지 이동
+
     @GetMapping("/mainPage")
     public String mainPage(Pager pager, Model model, Model model2, Model model3, Model model4, Model model5, Model model6, Model model7, HttpSession session) {
         log.info("session.loginMember : {} " , session.getAttribute("loginMember"));
+
         model.addAttribute("member", new MemberVO());
         List<OfferEntity> offerEntities = offerService.findEditer();
         List<SeekerVO> seekerVOList = seekerService.findEditerSeeker();
@@ -149,23 +157,23 @@ public class MainPageController {
         log.info("pager : {}", pager);
         model.addAttribute("pageDTO", new PageDTO(pager, seekerService.findCamaraManSeekerCount(pager)));
         model.addAttribute("seeker", seekerVO);
-
         return "jobSeeker/camaraManSeeker";
     }
 
     // 스토어 바로가기
+
     @GetMapping("/store/premierProStore")
-    public String premierProStore(Pager pager,Model model){
+    public String premierProStore(Pager pager, Model model) {
         List<StoreProductVO> storeProductVO = storeService.getPremierProStoreListWithPaging(pager);
         log.info("pager : {}", pager);
         model.addAttribute("pageDTO", new PageDTO(pager, storeService.findPremierProStoreCount(pager)));
         model.addAttribute("storeProduct", storeProductVO);
-
         return "store/premierProStore";
     }
 
+
     @GetMapping("/store/finalCutStore")
-    public String finalCutStore(Pager pager,Model model){
+    public String finalCutStore(Pager pager, Model model) {
         List<StoreProductVO> storeProductVO = storeService.getFinalCutStoreListWithPaging(pager);
         log.info("pager : {}", pager);
         model.addAttribute("pageDTO", new PageDTO(pager, storeService.findFinalCutStoreCount(pager)));
@@ -175,7 +183,7 @@ public class MainPageController {
     }
 
     @GetMapping("/store/imageStore")
-    public String imageStore(Pager pager,Model model){
+    public String imageStore(Pager pager, Model model) {
         List<StoreProductVO> storeProductVO = storeService.getImageStoreListWithPaging(pager);
         log.info("pager : {}", pager);
         model.addAttribute("pageDTO", new PageDTO(pager, storeService.findImageStoreCount(pager)));
@@ -185,7 +193,7 @@ public class MainPageController {
     }
 
     @GetMapping("/store/powerBannerStore")
-    public String powerBannerStore(Model model){
+    public String powerBannerStore(Pager pager, Model model) {
         List<StoreProductVO> storeProductVO = storeService.findPowerBannerStore();
         model.addAttribute("product", storeProductVO);
         return "store/powerBannerStore";

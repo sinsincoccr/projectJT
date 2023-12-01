@@ -19,6 +19,14 @@
             crossorigin="anonymous"></script>
     <th:block th:insert="~{assist/header :: head_header}" />
 
+    <script th:inline="javascript">
+        var storedToken = localStorage.getItem("authToken")|| null;
+        console.log("Stored Token: " + storedToken);
+        if (storedToken == null) {
+            alert("로그인 후 접근 가능.");
+            history.back();
+        }
+    </script>
 </head>
 <body>
     <th:block th:insert="~{assist/header :: contents}"/>

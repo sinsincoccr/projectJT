@@ -1,5 +1,6 @@
 package com.project.controller;
 
+import com.project.aspect.TokenRequired;
 import com.project.domain.MemberVO;
 import com.project.domain.OfferVO;
 import com.project.domain.StoreProductVO;
@@ -35,8 +36,10 @@ public class StoreController {
     private String PATH;
 
     // 글작성 폼
+
     @GetMapping("/writeProduct")
-    public String addProduct(@ModelAttribute StoreProductVO storeProductVO, Model model) {
+    public String addProduct(@ModelAttribute StoreProductVO storeProductVO, Model model, @RequestHeader("Authorization") String token) {
+        model.addAttribute("storedToken", token);
         model.addAttribute( "product", storeProductVO);
         return "store/writeProduct";
     }

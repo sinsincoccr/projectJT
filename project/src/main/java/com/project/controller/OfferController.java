@@ -1,5 +1,6 @@
 package com.project.controller;
 
+import com.project.aspect.TokenRequired;
 import com.project.domain.MemberVO;
 import com.project.domain.OfferVO;
 import com.project.entity.OfferEntity;
@@ -42,6 +43,7 @@ public class OfferController {
     }
 
     //정보 확인
+
     @GetMapping("/offerInfo")
     public String offerInfo(Long offer_no, Model model) {
         log.info("offer_no : {}", offer_no);
