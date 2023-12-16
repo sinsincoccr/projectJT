@@ -13,11 +13,11 @@
 - OS : Window 10  
 - Serever : Apache Tomcat, AWS EC2
 - DBMS : Oracle 11.g
-- Framework & platform : Mybatis, BootStrap, Jquery, Jackson, Node JS, HTML
+- Framework & platform : Mybatis, BootStrap, Jquery, Jackson, HTML
 - language : JAVA, JS, SQL
 - tools : inteliJ, Oracle SQL Developer, Docker
 
-  ![1  개발환경](https://github.com/sinsincoccr/projectJT/assets/145324925/94a1851a-5359-4eb0-9308-ba3319cd445e)
+  ![1  개발환경](![image](https://github.com/sinsincoccr/projectJT/assets/145324925/e5b9e77c-105e-47c3-81f4-86df7b065401))
 
 
 
