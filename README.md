@@ -17,7 +17,8 @@
 - language : JAVA, JS, SQL
 - tools : inteliJ, Oracle SQL Developer, Docker
 
-  ![1  개발환경](![image](https://github.com/sinsincoccr/projectJT/assets/145324925/e5b9e77c-105e-47c3-81f4-86df7b065401))
+  ![1  개발환경]
+  (![image](https://github.com/sinsincoccr/projectJT/assets/145324925/e5b9e77c-105e-47c3-81f4-86df7b065401))
 
 
 
